@@ -313,7 +313,9 @@ const Home = () => {
                     className="bg-white/90 border-white/30"
                     required
                   />
-                  <Button type="submit" size="lg" className="w-full bg-gold hover:bg-gold-dark text-white rounded-full">Submit</Button>
+                  <Button type="submit" size="lg" className="w-full bg-gold hover:bg-gold-dark text-white rounded-full" disabled={loading}>
+                    {loading ? 'Submitting...' : 'Submit'}
+                  </Button>
                   <p className="text-xs text-white/70 text-center">Your information is secure and will only be used to contact you about Brigade Avalon.</p>
                 </form>
               </CardContent>
