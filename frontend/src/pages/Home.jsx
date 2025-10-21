@@ -172,10 +172,37 @@ const Home = () => {
       </section>
 
       {/* Gallery Section */}
-      <section id="gallery" className="py-20 lg:py-32 bg-white">
+      <section id="gallery" className="py-20 lg:py-32 bg-white overflow-hidden">
         <div className="container mx-auto px-4 lg:px-8">
-          <h2 className="text-4xl lg:text-5xl font-display text-center mb-16 text-charcoal">Gallery</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+          <h2 className="text-4xl lg:text-5xl font-display text-center mb-8 lg:mb-16 text-charcoal">Gallery</h2>
+          
+          {/* Mobile Carousel */}
+          <div className="lg:hidden relative">
+            <div className="flex gap-3 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-4 px-4 -mx-4" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+              {galleryImages.map((img, idx) => (
+                <div 
+                  key={idx} 
+                  className="flex-shrink-0 w-[280px] h-[280px] snap-center"
+                  onClick={() => openLightbox(img)}
+                >
+                  <div className="relative overflow-hidden rounded-xl h-full shadow-lg animate-slide-in" style={{ animationDelay: `${idx * 0.1}s` }}>
+                    <img src={img} alt={`Gallery ${idx + 1}`} className="w-full h-full object-cover" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent flex items-end p-4">
+                      <span className="text-white text-sm font-medium">Tap to view</span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="flex justify-center mt-4 gap-2">
+              {galleryImages.slice(0, 5).map((_, idx) => (
+                <div key={idx} className="w-2 h-2 rounded-full bg-gold/30"></div>
+              ))}
+            </div>
+          </div>
+
+          {/* Desktop Grid */}
+          <div className="hidden lg:grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
             {galleryImages.map((img, idx) => (
               <div key={idx} className="group relative overflow-hidden rounded-lg aspect-square cursor-pointer" onClick={() => openLightbox(img)}>
                 <img src={img} alt={`Gallery ${idx + 1}`} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
@@ -185,7 +212,8 @@ const Home = () => {
               </div>
             ))}
           </div>
-          <div className="text-center mt-12">
+
+          <div className="text-center mt-8 lg:mt-12">
             <Button onClick={scrollToForm} size="lg" className="bg-gold hover:bg-gold-dark text-white rounded-full px-8">Book a Site Visit</Button>
           </div>
         </div>
