@@ -68,15 +68,20 @@ async def create_status_check(input: StatusCheckCreate):
 
 @api_router.get("/status", response_model=List[StatusCheck])
 async def get_status_checks():
-    # Exclude MongoDB's _id field from the query results
-    status_checks = await db.status_checks.find({}, {"_id": 0}).to_list(1000)
-    
-    # Convert ISO string timestamps back to datetime objects
-    for check in status_checks:
-        if isinstance(check['timestamp'], str):
-            check['timestamp'] = datetime.fromisoformat(check['timestamp'])
-    
-    return status_checks
+    status_checks = await db.status_checks.find().to_list(1000)
+    return [StatusCheck(**status_check) for status_check in status_checks]
+
+@api_router.post("/leads", response_model=Lead)
+async def create_lead(input: LeadCreate):
+    lead_dict = input.dict()
+    lead_obj = Lead(**lead_dict)
+    _ = await db.leads.insert_one(lead_obj.dict())
+    return lead_obj
+
+@api_router.get("/leads", response_model=List[Lead])
+async def get_leads():
+    leads = await db.leads.find().to_list(1000)
+    return [Lead(**lead) for lead in leads]
 
 # Include the router in the main app
 app.include_router(api_router)
