@@ -294,46 +294,92 @@ const Home = () => {
       </section>
 
       {/* Final CTA + Form Section */}
-      <section id="book-visit" className="relative py-20 lg:py-32">
+      <section id="book-visit" className="relative py-24 lg:py-40">
         <div className="absolute inset-0">
           <img src={galleryImages[0]} alt="Book Visit" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/60" />
         </div>
         <div className="container mx-auto px-4 lg:px-8 relative z-10">
-          <div className="max-w-2xl mx-auto text-center text-white">
-            <h2 className="text-4xl lg:text-5xl font-display mb-4">Ready to Experience Brigade Avalon?</h2>
-            <p className="text-xl mb-8">Book a private tour and our team will get in touch.</p>
+          <div className="max-w-3xl mx-auto text-center text-white">
+            <h2 className="text-4xl lg:text-6xl font-display mb-6">Ready to Experience Brigade Avalon?</h2>
+            <p className="text-xl lg:text-2xl mb-12">Book a private tour and our team will get in touch.</p>
             <Card className="bg-white/10 backdrop-blur-md border-white/20">
-              <CardContent className="p-8">
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <Input
-                    type="text"
-                    placeholder="Full Name *"
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="bg-white/90 border-white/30"
-                    required
-                  />
-                  <Input
-                    type="email"
-                    placeholder="Email *"
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="bg-white/90 border-white/30"
-                    required
-                  />
-                  <Input
-                    type="tel"
-                    placeholder="Phone Number *"
-                    value={formData.phone}
-                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className="bg-white/90 border-white/30"
-                    required
-                  />
-                  <Button type="submit" size="lg" className="w-full bg-gold hover:bg-gold-dark text-white rounded-full" disabled={loading}>
+              <CardContent className="p-10 lg:p-12">
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="text-left">
+                    <label className="block text-white font-medium mb-2 text-lg">Full Name *</label>
+                    <Input
+                      type="text"
+                      placeholder="Enter your full name"
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      className="bg-white/90 border-white/30 h-14 text-lg"
+                      required
+                    />
+                  </div>
+                  
+                  <div className="text-left">
+                    <label className="block text-white font-medium mb-2 text-lg">Email</label>
+                    <Input
+                      type="email"
+                      placeholder="Enter your email (optional)"
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      className="bg-white/90 border-white/30 h-14 text-lg"
+                    />
+                  </div>
+                  
+                  <div className="text-left">
+                    <label className="block text-white font-medium mb-2 text-lg">Phone Number *</label>
+                    <Input
+                      type="tel"
+                      placeholder="Enter your phone number"
+                      value={formData.phone}
+                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      className="bg-white/90 border-white/30 h-14 text-lg"
+                      required
+                    />
+                  </div>
+                  
+                  <div className="text-left">
+                    <label className="block text-white font-medium mb-4 text-lg">Preferred Options</label>
+                    <div className="space-y-4">
+                      <label className="flex items-center space-x-4 cursor-pointer bg-white/5 hover:bg-white/10 p-4 rounded-lg transition-all">
+                        <input
+                          type="checkbox"
+                          checked={formData.bhk3}
+                          onChange={(e) => setFormData({ ...formData, bhk3: e.target.checked })}
+                          className="w-5 h-5 rounded border-white/30 text-gold focus:ring-gold focus:ring-offset-0"
+                        />
+                        <span className="text-white text-lg">3 BHK</span>
+                      </label>
+                      
+                      <label className="flex items-center space-x-4 cursor-pointer bg-white/5 hover:bg-white/10 p-4 rounded-lg transition-all">
+                        <input
+                          type="checkbox"
+                          checked={formData.bhk4}
+                          onChange={(e) => setFormData({ ...formData, bhk4: e.target.checked })}
+                          className="w-5 h-5 rounded border-white/30 text-gold focus:ring-gold focus:ring-offset-0"
+                        />
+                        <span className="text-white text-lg">4.5 BHK</span>
+                      </label>
+                      
+                      <label className="flex items-center space-x-4 cursor-pointer bg-white/5 hover:bg-white/10 p-4 rounded-lg transition-all">
+                        <input
+                          type="checkbox"
+                          checked={formData.brochure}
+                          onChange={(e) => setFormData({ ...formData, brochure: e.target.checked })}
+                          className="w-5 h-5 rounded border-white/30 text-gold focus:ring-gold focus:ring-offset-0"
+                        />
+                        <span className="text-white text-lg">Send me brochure and project plan</span>
+                      </label>
+                    </div>
+                  </div>
+                  
+                  <Button type="submit" size="lg" className="w-full bg-gold hover:bg-gold-dark text-white rounded-full h-14 text-lg font-semibold mt-8" disabled={loading}>
                     {loading ? 'Submitting...' : 'Submit'}
                   </Button>
-                  <p className="text-xs text-white/70 text-center">Your information is secure and will only be used to contact you about Brigade Avalon.</p>
+                  <p className="text-sm text-white/70 text-center mt-4">Your information is secure and will only be used to contact you about Brigade Avalon.</p>
                 </form>
               </CardContent>
             </Card>
