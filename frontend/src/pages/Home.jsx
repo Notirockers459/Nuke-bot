@@ -28,30 +28,60 @@ const Home = () => {
 
   const heroImage = 'https://images.unsplash.com/photo-1758193431355-54df41421657';
   
+  // Reduced gallery images for faster loading (8 instead of 14)
   const galleryImages = [
-    'https://images.unsplash.com/photo-1638454668466-e8dbd5462f20?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2Mzl8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBhcGFydG1lbnQlMjBpbnRlcmlvcnxlbnwwfHx8fDE3NjEwMzY4NDF8MA&ixlib=rb-4.1.0&q=85',
-    'https://images.unsplash.com/photo-1715985160020-d8cd6fdc8ba9?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2Mzl8MHwxfHNlYXJjaHwyfHxsdXh1cnklMjBhcGFydG1lbnQlMjBpbnRlcmlvcnxlbnwwfHx8fDE3NjEwMzY4NDF8MA&ixlib=rb-4.1.0&q=85',
-    'https://images.unsplash.com/photo-1751998816160-0bdb329a3b9f?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2Mzl8MHwxfHNlYXJjaHwzfHxsdXh1cnklMjBhcGFydG1lbnQlMjBpbnRlcmlvcnxlbnwwfHx8fDE3NjEwMzY4NDF8MA&ixlib=rb-4.1.0&q=85',
-    'https://images.unsplash.com/photo-1751998816246-c63d182770c0?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2Mzl8MHwxfHNlYXJjaHw0fHxsdXh1cnklMjBhcGFydG1lbnQlMjBpbnRlcmlvcnxlbnwwfHx8fDE3NjEwMzY4NDF8MA&ixlib=rb-4.1.0&q=85',
-    'https://images.unsplash.com/photo-1543489822-c49534f3271f?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODF8MHwxfHNlYXJjaHwyfHxpbmZpbml0eSUyMHBvb2x8ZW58MHx8fHwxNzYxMDM2ODQ4fDA&ixlib=rb-4.1.0&q=85',
-    'https://images.unsplash.com/photo-1521750465-672a0f580901?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODF8MHwxfHNlYXJjaHwzfHxpbmZpbml0eSUyMHBvb2x8ZW58MHx8fHwxNzYxMDM2ODQ4fDA&ixlib=rb-4.1.0&q=85',
-    'https://images.pexels.com/photos/221457/pexels-photo-221457.jpeg',
-    'https://images.unsplash.com/photo-1758448756350-3d0eec02ba37?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Nzd8MHwxfHNlYXJjaHwyfHxtb2Rlcm4lMjBneW18ZW58MHx8fHwxNzYxMDM2ODU1fDA&ixlib=rb-4.1.0&q=85',
-    'https://images.unsplash.com/photo-1760031670160-4da44e9596d0?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Nzd8MHwxfHNlYXJjaHw0fHxtb2Rlcm4lMjBneW18ZW58MHx8fHwxNzYxMDM2ODU1fDA&ixlib=rb-4.1.0&q=85',
-    'https://images.pexels.com/photos/4944975/pexels-photo-4944975.jpeg',
-    'https://images.unsplash.com/photo-1668854824157-c4143ea7ca6b?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Njd8MHwxfHNlYXJjaHwyfHxsYW5kc2NhcGVkJTIwZ2FyZGVufGVufDB8fHx8MTc2MTAzNjg2M3ww&ixlib=rb-4.1.0&q=85',
-    'https://images.pexels.com/photos/34380469/pexels-photo-34380469.jpeg',
-    'https://images.pexels.com/photos/33217719/pexels-photo-33217719.jpeg',
-    'https://images.unsplash.com/photo-1758526116322-52919e89b3c3'
+    'https://images.unsplash.com/photo-1638454668466-e8dbd5462f20?w=600&q=75',
+    'https://images.unsplash.com/photo-1715985160020-d8cd6fdc8ba9?w=600&q=75',
+    'https://images.unsplash.com/photo-1751998816160-0bdb329a3b9f?w=600&q=75',
+    'https://images.unsplash.com/photo-1543489822-c49534f3271f?w=600&q=75',
+    'https://images.unsplash.com/photo-1521750465-672a0f580901?w=600&q=75',
+    'https://images.unsplash.com/photo-1758448756350-3d0eec02ba37?w=600&q=75',
+    'https://images.unsplash.com/photo-1668854824157-c4143ea7ca6b?w=600&q=75',
+    'https://images.pexels.com/photos/221457/pexels-photo-221457.jpeg?w=600&q=75'
   ];
 
   const stats = [
-    { label: 'Towers', value: '3', icon: Building2 },
-    { label: 'Floors', value: '15 each', icon: HomeIcon },
-    { label: 'Total Flats', value: '206', icon: Users },
-    { label: 'Unit Types', value: '3 & 4.5 BHK', icon: Ruler },
-    { label: 'Location', value: 'Whitefield, Bangalore', icon: MapPin },
-    { label: 'Starting Price', value: '₹8.62 Cr Onwards', icon: IndianRupee }
+    { 
+      label: 'Towers', 
+      value: '3', 
+      icon: Building2,
+      image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=400&q=75',
+      expandable: true 
+    },
+    { 
+      label: 'Floors', 
+      value: '15 each', 
+      icon: HomeIcon,
+      image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=400&q=75',
+      expandable: true 
+    },
+    { 
+      label: 'Total Flats', 
+      value: '206', 
+      icon: Users,
+      image: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=400&q=75',
+      expandable: true 
+    },
+    { 
+      label: 'Unit Types', 
+      value: '3 & 4.5 BHK', 
+      icon: Ruler,
+      image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=400&q=75',
+      expandable: true 
+    },
+    { 
+      label: 'Location', 
+      value: 'Whitefield, Bangalore', 
+      icon: MapPin,
+      image: 'https://images.unsplash.com/photo-1570168007204-dfb528c6958f?w=400&q=75',
+      expandable: true 
+    },
+    { 
+      label: 'Starting Price', 
+      value: '₹4.62 Cr Onwards', 
+      icon: IndianRupee,
+      expandable: false 
+    }
   ];
 
   const amenities = [
