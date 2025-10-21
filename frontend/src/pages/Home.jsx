@@ -77,13 +77,23 @@ const Home = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (formData.name && formData.email && formData.phone) {
+    if (formData.name && formData.phone) {
       setLoading(true);
       try {
-        const response = await axios.post(`${API}/leads`, formData);
+        const leadData = {
+          name: formData.name,
+          email: formData.email || 'Not provided',
+          phone: formData.phone,
+          preferences: {
+            bhk3: formData.bhk3,
+            bhk4: formData.bhk4,
+            brochure: formData.brochure
+          }
+        };
+        const response = await axios.post(`${API}/leads`, leadData);
         if (response.status === 200) {
           toast.success('Thank you! Our team will contact you shortly.');
-          setFormData({ name: '', email: '', phone: '' });
+          setFormData({ name: '', email: '', phone: '', bhk3: false, bhk4: false, brochure: false });
         }
       } catch (error) {
         console.error('Error submitting lead:', error);
@@ -92,7 +102,7 @@ const Home = () => {
         setLoading(false);
       }
     } else {
-      toast.error('Please fill in all fields.');
+      toast.error('Please fill in all required fields (Name and Phone).');
     }
   };
 
