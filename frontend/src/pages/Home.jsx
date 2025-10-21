@@ -224,17 +224,22 @@ const Home = () => {
         <div className="container mx-auto px-4 lg:px-8">
           <h2 className="text-4xl lg:text-5xl font-display text-center mb-8 lg:mb-16 text-charcoal">Gallery</h2>
           
-          {/* Mobile Carousel */}
+          {/* Mobile Carousel - Infinite Loop */}
           <div className="lg:hidden relative">
-            <div className="flex gap-3 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-4 px-4 -mx-4" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
-              {galleryImages.map((img, idx) => (
+            <div 
+              ref={carouselRef}
+              className="flex gap-3 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-4 px-4 -mx-4" 
+              style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+            >
+              {/* Triple the images for seamless loop */}
+              {[...galleryImages, ...galleryImages, ...galleryImages].map((img, idx) => (
                 <div 
                   key={idx} 
                   className="flex-shrink-0 w-[280px] h-[280px] snap-center"
                   onClick={() => openLightbox(img)}
                 >
-                  <div className="relative overflow-hidden rounded-xl h-full shadow-lg animate-slide-in" style={{ animationDelay: `${idx * 0.1}s` }}>
-                    <img src={img} alt={`Gallery ${idx + 1}`} className="w-full h-full object-cover" />
+                  <div className="relative overflow-hidden rounded-xl h-full shadow-lg">
+                    <img src={img} alt={`Gallery ${(idx % galleryImages.length) + 1}`} className="w-full h-full object-cover" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent flex items-end p-4">
                       <span className="text-white text-sm font-medium">Tap to view</span>
                     </div>
@@ -242,10 +247,10 @@ const Home = () => {
                 </div>
               ))}
             </div>
-            <div className="flex justify-center mt-4 gap-2">
-              {galleryImages.slice(0, 5).map((_, idx) => (
-                <div key={idx} className="w-2 h-2 rounded-full bg-gold/30"></div>
-              ))}
+            <div className="flex justify-center mt-4 gap-1">
+              <div className="px-3 py-1 bg-gold/20 rounded-full">
+                <span className="text-xs text-gold font-medium">Swipe to explore →</span>
+              </div>
             </div>
           </div>
 
