@@ -68,11 +68,22 @@ const Home = () => {
     document.getElementById('book-visit')?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (formData.name && formData.email && formData.phone) {
-      toast.success('Thank you! Our team will contact you shortly.');
-      setFormData({ name: '', email: '', phone: '' });
+      setLoading(true);
+      try {
+        const response = await axios.post(`${API}/leads`, formData);
+        if (response.status === 200) {
+          toast.success('Thank you! Our team will contact you shortly.');
+          setFormData({ name: '', email: '', phone: '' });
+        }
+      } catch (error) {
+        console.error('Error submitting lead:', error);
+        toast.error('Something went wrong. Please try again.');
+      } finally {
+        setLoading(false);
+      }
     } else {
       toast.error('Please fill in all fields.');
     }
