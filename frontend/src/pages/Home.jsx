@@ -12,7 +12,14 @@ const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
 
 const Home = () => {
-  const [formData, setFormData] = useState({ name: '', email: '', phone: '' });
+  const [formData, setFormData] = useState({ 
+    name: '', 
+    email: '', 
+    phone: '',
+    bhk3: false,
+    bhk4: false,
+    brochure: false
+  });
   const [loading, setLoading] = useState(false);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxImage, setLightboxImage] = useState('');
