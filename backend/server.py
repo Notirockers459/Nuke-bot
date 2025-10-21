@@ -41,12 +41,14 @@ class LeadCreate(BaseModel):
     name: str
     email: str
     phone: str
+    preferences: dict = {}
 
 class Lead(BaseModel):
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
     name: str
     email: str
     phone: str
+    preferences: dict = {}
     timestamp: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
 # Add your routes to the router instead of directly to app
