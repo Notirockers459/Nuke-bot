@@ -1,12 +1,21 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-    darkMode: ["class"],
+    darkMode: ['class'],
     content: [
-    "./src/**/*.{js,jsx,ts,tsx}",
-    "./public/index.html"
+    './src/**/*.{js,jsx,ts,tsx}',
+    './public/index.html'
   ],
   theme: {
   	extend: {
+  		fontFamily: {
+  			display: ['Playfair Display', 'serif'],
+  			body: ['Poppins', 'sans-serif']
+  		},
+  		colors: {
+  			gold: '#C5A15A',
+  			'gold-dark': '#A68948',
+  			charcoal: '#2B2B2B'
+  		},
   		borderRadius: {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
@@ -44,7 +53,7 @@ module.exports = {
   				foreground: 'hsl(var(--destructive-foreground))'
   			},
   			border: 'hsl(var(--border))',
-  			input: 'hsl(var(--input))',
+  			input: 'hsl(var(--border))',
   			ring: 'hsl(var(--ring))',
   			chart: {
   				'1': 'hsl(var(--chart-1))',
@@ -52,7 +61,10 @@ module.exports = {
   				'3': 'hsl(var(--chart-3))',
   				'4': 'hsl(var(--chart-4))',
   				'5': 'hsl(var(--chart-5))'
-  			}
+  			},
+  			gold: '#C5A15A',
+  			'gold-dark': '#A68948',
+  			charcoal: '#2B2B2B'
   		},
   		keyframes: {
   			'accordion-down': {
@@ -78,5 +90,5 @@ module.exports = {
   		}
   	}
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require('tailwindcss-animate')],
 };
