@@ -85,6 +85,33 @@ async def get_leads():
     leads = await db.leads.find().to_list(1000)
     return [Lead(**lead) for lead in leads]
 
+@api_router.post("/crm/submit")
+async def submit_to_crm(data: dict):
+    """Forward lead data to Paramantra CRM"""
+    import requests
+    
+    crm_url = 'https://cloud.paramantra.com/paramantra/api/data/new/format/json'
+    api_key = '5FAKyMBA1KF4w6FsD5rr4FB0Go'
+    app_name = 'xsFED'
+    
+    headers = {
+        'X-API-KEY': api_key,
+        'ACTION-ON': app_name
+    }
+    
+    try:
+        response = requests.post(
+            crm_url,
+            data=data,
+            headers=headers,
+            auth=(api_key, api_key),
+            timeout=30
+        )
+        return {"status": "success", "crm_response": response.json()}
+    except Exception as e:
+        logger.error(f"CRM submission error: {str(e)}")
+        return {"status": "error", "message": str(e)}
+
 # Include the router in the main app
 app.include_router(api_router)
 
