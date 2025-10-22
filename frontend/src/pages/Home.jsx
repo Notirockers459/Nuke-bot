@@ -23,7 +23,6 @@ const Home = () => {
   const [showSuccess, setShowSuccess] = useState(false);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxImage, setLightboxImage] = useState('');
-  const [expandedStat, setExpandedStat] = useState(null);
   const carouselRef = React.useRef(null);
 
   const heroImage = 'https://images.unsplash.com/photo-1758193431355-54df41421657?w=800&q=75';
