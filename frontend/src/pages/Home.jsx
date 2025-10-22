@@ -398,25 +398,34 @@ const Home = () => {
       {/* Amenities Section */}
       <section id="amenities" className="py-16 lg:py-24 bg-gray-50">
         <div className="container mx-auto px-4 lg:px-8">
-          <h2 className="text-3xl lg:text-5xl font-display text-center mb-4 text-charcoal">A Lifestyle Beyond Ordinary</h2>
-          <div className="grid lg:grid-cols-2 gap-8 mt-12">
-            <div className="relative rounded-2xl overflow-hidden h-[300px] lg:h-auto">
-              <img src={galleryImages[2]} alt="Amenities" className="w-full h-full object-cover" loading="lazy" />
-            </div>
-            <div className="grid grid-cols-2 gap-4">
-              {amenities.map((amenity, idx) => {
-                const Icon = amenity.icon;
-                return (
-                  <Card key={idx} className="border-gold/20 hover:border-gold transition-all hover:shadow-lg">
-                    <CardContent className="p-4 lg:p-6 text-center">
-                      <Icon className="w-8 h-8 lg:w-10 lg:h-10 text-gold mx-auto mb-2" />
-                      <p className="text-xs lg:text-sm font-medium">{amenity.title}</p>
-                    </CardContent>
-                  </Card>
-                );
-              })}
-            </div>
+          <h2 className="text-3xl lg:text-5xl font-display text-center mb-3 text-charcoal">A Lifestyle Beyond Ordinary</h2>
+          <p className="text-center text-gray-600 mb-8 lg:mb-12">Experience world-class amenities designed for modern living</p>
+          
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 lg:gap-4 max-w-6xl mx-auto">
+            {amenities.map((amenity, idx) => {
+              const Icon = amenity.icon;
+              return (
+                <div 
+                  key={idx} 
+                  className="group relative overflow-hidden rounded-xl aspect-square cursor-pointer hover:scale-105 transition-all duration-300"
+                  onClick={() => openLightbox(amenity.image)}
+                >
+                  <img 
+                    src={amenity.image} 
+                    alt={amenity.title} 
+                    className="w-full h-full object-cover" 
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+                  <div className="absolute inset-0 flex flex-col items-center justify-end p-4 text-white">
+                    <Icon className="w-8 h-8 lg:w-10 lg:h-10 mb-2 text-gold" />
+                    <h3 className="text-xs lg:text-sm font-bold text-center uppercase tracking-wide">{amenity.title}</h3>
+                  </div>
+                </div>
+              );
+            })}
           </div>
+
           <div className="text-center mt-8">
             <Button onClick={scrollToForm} size="lg" className="bg-gold hover:bg-gold-dark text-white rounded-full px-8">Book a Site Visit</Button>
           </div>
