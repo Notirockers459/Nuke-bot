@@ -708,7 +708,11 @@ const Home = () => {
         <div className="container mx-auto px-4 lg:px-8">
           <div className="grid md:grid-cols-3 gap-6 lg:gap-8 mb-6 lg:mb-8">
             <div>
-              <div className="text-xl lg:text-2xl font-display font-bold mb-2 text-gold">Brigade Avalon</div>
+              <img 
+                src="https://customer-assets.emergentagent.com/job_brigade-avalon/artifacts/v933x2ub_image.png" 
+                alt="BuildNest Realty" 
+                className="h-10 lg:h-12 mb-3 brightness-0 invert"
+              />
               <p className="text-white/70 text-sm">For those who thought they had everything</p>
             </div>
             <div>
