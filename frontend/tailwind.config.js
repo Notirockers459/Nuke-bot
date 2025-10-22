@@ -8,7 +8,7 @@ module.exports = {
   theme: {
   	extend: {
   		fontFamily: {
-  			display: ['Playfair Display', 'serif'],
+  			display: ['Cormorant Garamond', 'serif'],
   			body: ['Poppins', 'sans-serif']
   		},
   		colors: {
