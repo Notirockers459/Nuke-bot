@@ -46,42 +46,37 @@ const Home = () => {
       label: 'Towers', 
       value: '3', 
       icon: Building2,
-      image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=600&q=75',
-      expandable: true 
+      link: '#gallery'
     },
     { 
       label: 'Floors', 
       value: '15 each', 
       icon: HomeIcon,
-      image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=600&q=75',
-      expandable: true 
+      link: '#gallery'
     },
     { 
       label: 'Total Flats', 
       value: '206', 
       icon: Users,
-      image: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600&q=75',
-      expandable: true 
+      link: '#gallery'
     },
     { 
       label: 'Unit Types', 
       value: '3 & 4.5 BHK', 
       icon: Ruler,
-      image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&q=75',
-      expandable: true 
+      link: '#floor-plans'
     },
     { 
       label: 'Location', 
       value: 'Whitefield, Bangalore', 
       icon: MapPin,
-      image: 'https://images.unsplash.com/photo-1570168007204-dfb528c6958f?w=600&q=75',
-      expandable: true 
+      link: '#location'
     },
     { 
       label: 'Starting Price', 
       value: '₹4.62 Cr Onwards', 
       icon: IndianRupee,
-      expandable: false 
+      link: '#floor-plans'
     }
   ];
 
