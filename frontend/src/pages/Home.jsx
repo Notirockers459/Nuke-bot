@@ -211,50 +211,9 @@ const Home = () => {
     setLightboxOpen(true);
   };
 
-  // Auto-scroll carousel effect
+  // Auto-scroll carousel effect - REMOVED to fix glitching
   React.useEffect(() => {
-    const carousel = carouselRef.current;
-    if (!carousel) return;
-
-    let scrollInterval;
-    let isUserScrolling = false;
-    let userScrollTimeout;
-
-    const startAutoScroll = () => {
-      scrollInterval = setInterval(() => {
-        if (!isUserScrolling && carousel) {
-          const maxScroll = carousel.scrollWidth - carousel.clientWidth;
-          const currentScroll = carousel.scrollLeft;
-          
-          if (currentScroll >= maxScroll - 10) {
-            carousel.scrollTo({ left: 0, behavior: 'smooth' });
-          } else {
-            carousel.scrollBy({ left: 1.5, behavior: 'auto' });
-          }
-        }
-      }, 20);
-    };
-
-    const handleUserScroll = () => {
-      isUserScrolling = true;
-      clearTimeout(userScrollTimeout);
-      userScrollTimeout = setTimeout(() => {
-        isUserScrolling = false;
-      }, 2000);
-    };
-
-    carousel.addEventListener('touchstart', handleUserScroll);
-    carousel.addEventListener('touchmove', handleUserScroll);
-    startAutoScroll();
-
-    return () => {
-      clearInterval(scrollInterval);
-      clearTimeout(userScrollTimeout);
-      if (carousel) {
-        carousel.removeEventListener('touchstart', handleUserScroll);
-        carousel.removeEventListener('touchmove', handleUserScroll);
-      }
-    };
+    // Removed auto-scroll to prevent glitching
   }, []);
 
   return (
