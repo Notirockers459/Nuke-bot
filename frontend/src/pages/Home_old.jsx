@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { ChevronDown, MapPin, Building2, Home as HomeIcon, Ruler, IndianRupee, Users, Shield, Dumbbell, Waves, Leaf, Baby, Grid3x3, Sparkles, CheckCircle2, X } from 'lucide-react';
+import { ChevronDown, MapPin, Building2, Home as HomeIcon, Ruler, IndianRupee, Users, Shield, Dumbbell, Waves, Leaf, Baby, Grid3x3, Sparkles, CheckCircle2 } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
 import { Input } from '../components/ui/input';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '../components/ui/accordion';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs';
 import { toast } from 'sonner';
 import axios from 'axios';
 
@@ -25,16 +26,18 @@ const Home = () => {
   const [expandedStat, setExpandedStat] = useState(null);
   const carouselRef = React.useRef(null);
 
-  const heroImage = 'https://images.unsplash.com/photo-1758193431355-54df41421657?w=800&q=75';
+  const heroImage = 'https://images.unsplash.com/photo-1758193431355-54df41421657';
   
-  // Optimized gallery - 6 images, compressed for faster loading
+  // Reduced gallery images for faster loading (8 instead of 14)
   const galleryImages = [
-    'https://images.unsplash.com/photo-1638454668466-e8dbd5462f20?w=500&q=70',
-    'https://images.unsplash.com/photo-1715985160020-d8cd6fdc8ba9?w=500&q=70',
-    'https://images.unsplash.com/photo-1543489822-c49534f3271f?w=500&q=70',
-    'https://images.unsplash.com/photo-1521750465-672a0f580901?w=500&q=70',
-    'https://images.unsplash.com/photo-1758448756350-3d0eec02ba37?w=500&q=70',
-    'https://images.unsplash.com/photo-1668854824157-c4143ea7ca6b?w=500&q=70'
+    'https://images.unsplash.com/photo-1638454668466-e8dbd5462f20?w=600&q=75',
+    'https://images.unsplash.com/photo-1715985160020-d8cd6fdc8ba9?w=600&q=75',
+    'https://images.unsplash.com/photo-1751998816160-0bdb329a3b9f?w=600&q=75',
+    'https://images.unsplash.com/photo-1543489822-c49534f3271f?w=600&q=75',
+    'https://images.unsplash.com/photo-1521750465-672a0f580901?w=600&q=75',
+    'https://images.unsplash.com/photo-1758448756350-3d0eec02ba37?w=600&q=75',
+    'https://images.unsplash.com/photo-1668854824157-c4143ea7ca6b?w=600&q=75',
+    'https://images.pexels.com/photos/221457/pexels-photo-221457.jpeg?w=600&q=75'
   ];
 
   const stats = [
@@ -42,35 +45,35 @@ const Home = () => {
       label: 'Towers', 
       value: '3', 
       icon: Building2,
-      image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=400&q=70',
+      image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=400&q=75',
       expandable: true 
     },
     { 
       label: 'Floors', 
       value: '15 each', 
       icon: HomeIcon,
-      image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=400&q=70',
+      image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=400&q=75',
       expandable: true 
     },
     { 
       label: 'Total Flats', 
       value: '206', 
       icon: Users,
-      image: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=400&q=70',
+      image: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=400&q=75',
       expandable: true 
     },
     { 
       label: 'Unit Types', 
       value: '3 & 4.5 BHK', 
       icon: Ruler,
-      image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=400&q=70',
+      image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=400&q=75',
       expandable: true 
     },
     { 
       label: 'Location', 
       value: 'Whitefield, Bangalore', 
       icon: MapPin,
-      image: 'https://images.unsplash.com/photo-1570168007204-dfb528c6958f?w=400&q=70',
+      image: 'https://images.unsplash.com/photo-1570168007204-dfb528c6958f?w=400&q=75',
       expandable: true 
     },
     { 
@@ -90,21 +93,6 @@ const Home = () => {
     { icon: Shield, title: '24/7 Security & Surveillance' },
     { icon: Grid3x3, title: 'Landscaped Terraces & Sky Gardens' },
     { icon: HomeIcon, title: 'Premium Clubhouse Spaces' }
-  ];
-
-  const floorPlans = [
-    {
-      type: '3 BHK',
-      sqft: '1,850 - 2,100',
-      image: 'https://images.unsplash.com/photo-1503174971373-b1f69850bded?w=600&q=70',
-      description: 'Spacious 3-bedroom layout with modern amenities and elegant finishes'
-    },
-    {
-      type: '4.5 BHK',
-      sqft: '2,800 - 3,200',
-      image: 'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=600&q=70',
-      description: 'Luxurious 4.5-bedroom configuration with premium fixtures and expansive living areas'
-    }
   ];
 
   const proximities = [
@@ -171,6 +159,7 @@ const Home = () => {
           const currentScroll = carousel.scrollLeft;
           
           if (currentScroll >= maxScroll - 10) {
+            // Reset to beginning for seamless loop
             carousel.scrollTo({ left: 0, behavior: 'smooth' });
           } else {
             carousel.scrollBy({ left: 1.5, behavior: 'auto' });
@@ -222,12 +211,13 @@ const Home = () => {
       {/* Hero Section */}
       <section className="hero-section relative pt-20">
         <div className="grid lg:grid-cols-2 min-h-[90vh]">
+          {/* Left Half - Image */}
           <div className="relative h-[50vh] lg:h-auto">
             <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-black/30 z-10" />
-            <img src={heroImage} alt="Brigade Avalon" className="w-full h-full object-cover" loading="eager" />
+            <img src={heroImage} alt="Brigade Avalon" className="w-full h-full object-cover" />
             <div className="absolute inset-0 z-20 flex flex-col justify-center px-6 lg:px-12">
               <h1 className="text-4xl lg:text-6xl font-display text-white mb-4 animate-fade-in">Brigade Avalon — Homes Crafted for the Few.</h1>
-              <p className="text-xl lg:text-2xl text-white/90 mb-8 animate-fade-in-delay">3 & 4.5 BHK Luxury Residences in Whitefield | Starting at ₹4.62 Cr Onwards.</p>
+              <p className="text-xl lg:text-2xl text-white/90 mb-8 animate-fade-in-delay">3 & 4.5 BHK Luxury Residences in Whitefield | Starting at ₹8.62 Cr Onwards.</p>
               <div>
                 <Button onClick={scrollToForm} size="lg" className="bg-gold hover:bg-gold-dark text-white rounded-full px-8 text-lg">Book a Site Visit</Button>
               </div>
@@ -237,46 +227,19 @@ const Home = () => {
             </div>
           </div>
 
-          {/* At a Glance with Expandable Cards */}
+          {/* Right Half - At a Glance */}
           <div className="bg-charcoal text-white p-6 lg:p-12 flex items-center">
             <div className="w-full">
               <h2 className="text-3xl lg:text-4xl font-display mb-8 text-gold">At a Glance</h2>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-6">
                 {stats.map((stat, idx) => {
                   const Icon = stat.icon;
-                  const isExpanded = expandedStat === idx;
                   return (
-                    <Card 
-                      key={idx} 
-                      className={`bg-white/5 border-white/10 hover:bg-white/10 transition-all cursor-pointer ${isExpanded ? 'col-span-2' : ''}`}
-                      onClick={() => stat.expandable && setExpandedStat(isExpanded ? null : idx)}
-                    >
-                      <CardContent className="p-4 lg:p-6">
-                        {!isExpanded ? (
-                          <>
-                            <Icon className="w-8 h-8 lg:w-10 lg:h-10 text-gold mb-2" />
-                            <div className="text-xl lg:text-2xl font-bold mb-1">{stat.value}</div>
-                            <div className="text-xs lg:text-sm text-white/70">{stat.label}</div>
-                          </>
-                        ) : (
-                          <div className="space-y-3">
-                            <div className="flex items-center justify-between">
-                              <div className="flex items-center gap-3">
-                                <Icon className="w-8 h-8 text-gold" />
-                                <div>
-                                  <div className="text-2xl font-bold">{stat.value}</div>
-                                  <div className="text-sm text-white/70">{stat.label}</div>
-                                </div>
-                              </div>
-                              <X className="w-5 h-5 text-white/50 hover:text-white" />
-                            </div>
-                            {stat.image && (
-                              <div className="mt-3 rounded-lg overflow-hidden">
-                                <img src={stat.image} alt={stat.label} className="w-full h-40 object-cover" loading="lazy" />
-                              </div>
-                            )}
-                          </div>
-                        )}
+                    <Card key={idx} className="bg-white/5 border-white/10 hover:bg-white/10 transition-all hover:scale-105">
+                      <CardContent className="p-6">
+                        <Icon className="w-10 h-10 text-gold mb-3" />
+                        <div className="text-2xl font-bold mb-1">{stat.value}</div>
+                        <div className="text-sm text-white/70">{stat.label}</div>
                       </CardContent>
                     </Card>
                   );
@@ -287,10 +250,10 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Gallery Section - Simplified */}
-      <section id="gallery" className="py-16 lg:py-24 bg-white overflow-hidden">
+      {/* Gallery Section */}
+      <section id="gallery" className="py-20 lg:py-32 bg-white overflow-hidden">
         <div className="container mx-auto px-4 lg:px-8">
-          <h2 className="text-3xl lg:text-5xl font-display text-center mb-6 lg:mb-12 text-charcoal">Gallery</h2>
+          <h2 className="text-4xl lg:text-5xl font-display text-center mb-8 lg:mb-16 text-charcoal">Gallery</h2>
           
           {/* Mobile Carousel - Infinite Loop */}
           <div className="lg:hidden relative">
@@ -299,116 +262,122 @@ const Home = () => {
               className="flex gap-3 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-4 px-4 -mx-4" 
               style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
             >
-              {[...galleryImages, ...galleryImages].map((img, idx) => (
+              {/* Triple the images for seamless loop */}
+              {[...galleryImages, ...galleryImages, ...galleryImages].map((img, idx) => (
                 <div 
                   key={idx} 
-                  className="flex-shrink-0 w-[240px] h-[240px] snap-center"
+                  className="flex-shrink-0 w-[280px] h-[280px] snap-center"
                   onClick={() => openLightbox(img)}
                 >
-                  <div className="relative overflow-hidden rounded-lg h-full shadow-md">
-                    <img src={img} alt={`Gallery ${(idx % galleryImages.length) + 1}`} className="w-full h-full object-cover" loading="lazy" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent flex items-end p-3">
-                      <span className="text-white text-xs font-medium">Tap to view</span>
+                  <div className="relative overflow-hidden rounded-xl h-full shadow-lg">
+                    <img src={img} alt={`Gallery ${(idx % galleryImages.length) + 1}`} className="w-full h-full object-cover" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent flex items-end p-4">
+                      <span className="text-white text-sm font-medium">Tap to view</span>
                     </div>
                   </div>
                 </div>
               ))}
             </div>
-            <div className="flex justify-center mt-3">
+            <div className="flex justify-center mt-4 gap-1">
               <div className="px-3 py-1 bg-gold/20 rounded-full">
                 <span className="text-xs text-gold font-medium">Swipe to explore →</span>
               </div>
             </div>
           </div>
 
-          {/* Desktop Grid - Simplified */}
-          <div className="hidden lg:grid grid-cols-3 gap-4 max-w-5xl mx-auto">
+          {/* Desktop Grid */}
+          <div className="hidden lg:grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
             {galleryImages.map((img, idx) => (
               <div key={idx} className="group relative overflow-hidden rounded-lg aspect-square cursor-pointer" onClick={() => openLightbox(img)}>
-                <img src={img} alt={`Gallery ${idx + 1}`} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" />
+                <img src={img} alt={`Gallery ${idx + 1}`} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
                 <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <CheckCircle2 className="text-white w-10 h-10" />
+                  <CheckCircle2 className="text-white w-12 h-12" />
                 </div>
               </div>
             ))}
           </div>
 
-          <div className="text-center mt-8">
+          <div className="text-center mt-8 lg:mt-12">
             <Button onClick={scrollToForm} size="lg" className="bg-gold hover:bg-gold-dark text-white rounded-full px-8">Book a Site Visit</Button>
           </div>
         </div>
       </section>
 
       {/* Amenities Section */}
-      <section id="amenities" className="py-16 lg:py-24 bg-gray-50">
+      <section id="amenities" className="py-20 lg:py-32 bg-gray-50">
         <div className="container mx-auto px-4 lg:px-8">
-          <h2 className="text-3xl lg:text-5xl font-display text-center mb-4 text-charcoal">A Lifestyle Beyond Ordinary</h2>
-          <div className="grid lg:grid-cols-2 gap-8 mt-12">
-            <div className="relative rounded-2xl overflow-hidden h-[300px] lg:h-auto">
-              <img src={galleryImages[2]} alt="Amenities" className="w-full h-full object-cover" loading="lazy" />
+          <h2 className="text-4xl lg:text-5xl font-display text-center mb-4 text-charcoal">A Lifestyle Beyond Ordinary</h2>
+          <div className="grid lg:grid-cols-2 gap-12 mt-16">
+            <div className="relative rounded-2xl overflow-hidden h-[400px] lg:h-auto">
+              <img src={galleryImages[4]} alt="Amenities" className="w-full h-full object-cover" />
             </div>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-6">
               {amenities.map((amenity, idx) => {
                 const Icon = amenity.icon;
                 return (
-                  <Card key={idx} className="border-gold/20 hover:border-gold transition-all hover:shadow-lg">
-                    <CardContent className="p-4 lg:p-6 text-center">
-                      <Icon className="w-8 h-8 lg:w-10 lg:h-10 text-gold mx-auto mb-2" />
-                      <p className="text-xs lg:text-sm font-medium">{amenity.title}</p>
+                  <Card key={idx} className="border-gold/20 hover:border-gold transition-all hover:shadow-lg hover:-translate-y-1">
+                    <CardContent className="p-6 text-center">
+                      <Icon className="w-12 h-12 text-gold mx-auto mb-3" />
+                      <p className="text-sm font-medium">{amenity.title}</p>
                     </CardContent>
                   </Card>
                 );
               })}
             </div>
           </div>
-          <div className="text-center mt-8">
+          <div className="text-center mt-12">
             <Button onClick={scrollToForm} size="lg" className="bg-gold hover:bg-gold-dark text-white rounded-full px-8">Book a Site Visit</Button>
           </div>
         </div>
       </section>
 
-      {/* Floor Plans Section - New Design */}
-      <section id="floor-plans" className="py-16 lg:py-24 bg-white">
+      {/* Floor Plans Section */}
+      <section id="floor-plans" className="py-20 lg:py-32 bg-white">
         <div className="container mx-auto px-4 lg:px-8">
-          <h2 className="text-3xl lg:text-5xl font-display text-center mb-3 text-charcoal">Floor Plans & Configurations</h2>
-          <p className="text-center text-base lg:text-lg text-gray-600 mb-8 lg:mb-12">Choose from spacious 3 BHK and 4.5 BHK residences crafted for modern living.</p>
-          
-          <div className="grid md:grid-cols-2 gap-6 lg:gap-8 max-w-6xl mx-auto">
-            {floorPlans.map((plan, idx) => (
-              <Card key={idx} className="border-gold/20 hover:border-gold transition-all overflow-hidden">
-                <div className="relative h-[250px] lg:h-[300px] bg-gray-100">
-                  <img src={plan.image} alt={`${plan.type} Floor Plan`} className="w-full h-full object-cover" loading="lazy" />
-                  <div className="absolute top-4 left-4 bg-gold text-white px-4 py-2 rounded-full font-bold">
-                    {plan.type}
+          <h2 className="text-4xl lg:text-5xl font-display text-center mb-4 text-charcoal">Floor Plans & Configurations</h2>
+          <p className="text-center text-lg text-gray-600 mb-12">Choose from spacious 3 BHK and 4.5 BHK residences crafted for modern living.</p>
+          <Tabs defaultValue="3bhk" className="max-w-4xl mx-auto">
+            <TabsList className="grid w-full grid-cols-2 mb-8">
+              <TabsTrigger value="3bhk" className="text-lg">3 BHK</TabsTrigger>
+              <TabsTrigger value="4bhk" className="text-lg">4.5 BHK</TabsTrigger>
+            </TabsList>
+            <TabsContent value="3bhk">
+              <Card className="border-gold/20">
+                <CardContent className="p-8">
+                  <h3 className="text-2xl font-display mb-4">3 BHK Residence</h3>
+                  <p className="text-gray-600 mb-4">Spacious 3-bedroom configuration with modern amenities</p>
+                  <div className="bg-gray-100 rounded-lg h-64 flex items-center justify-center mb-6">
+                    <p className="text-gray-400">Floor Plan Illustration</p>
                   </div>
-                </div>
-                <CardContent className="p-6">
-                  <div className="flex items-center justify-between mb-3">
-                    <h3 className="text-xl lg:text-2xl font-display font-bold">{plan.type} Residence</h3>
-                    <div className="text-right">
-                      <div className="text-sm text-gray-500">Area</div>
-                      <div className="text-lg font-bold text-gold">{plan.sqft} sq.ft</div>
-                    </div>
-                  </div>
-                  <p className="text-sm lg:text-base text-gray-600 mb-4">{plan.description}</p>
-                  <Button variant="outline" className="w-full border-gold text-gold hover:bg-gold hover:text-white rounded-full">View Detailed Plan</Button>
+                  <Button variant="outline" className="border-gold text-gold hover:bg-gold hover:text-white rounded-full">View Floor Plan</Button>
                 </CardContent>
               </Card>
-            ))}
-          </div>
-
-          <div className="text-center mt-8">
+            </TabsContent>
+            <TabsContent value="4bhk">
+              <Card className="border-gold/20">
+                <CardContent className="p-8">
+                  <h3 className="text-2xl font-display mb-4">4.5 BHK Residence</h3>
+                  <p className="text-gray-600 mb-4">Ultra-spacious 4.5-bedroom configuration with premium finishes</p>
+                  <div className="bg-gray-100 rounded-lg h-64 flex items-center justify-center mb-6">
+                    <p className="text-gray-400">Floor Plan Illustration</p>
+                  </div>
+                  <Button variant="outline" className="border-gold text-gold hover:bg-gold hover:text-white rounded-full">View Floor Plan</Button>
+                </CardContent>
+              </Card>
+            </TabsContent>
+          </Tabs>
+          <div className="text-center mt-12">
             <Button onClick={scrollToForm} size="lg" className="bg-gold hover:bg-gold-dark text-white rounded-full px-8">Book a Site Visit</Button>
           </div>
         </div>
       </section>
 
       {/* Location Section */}
-      <section id="location" className="py-16 lg:py-24 bg-gray-50">
+      <section id="location" className="py-20 lg:py-32 bg-gray-50">
         <div className="container mx-auto px-4 lg:px-8">
-          <h2 className="text-3xl lg:text-5xl font-display text-center mb-8 lg:mb-12 text-charcoal">Perfectly Located in Whitefield</h2>
-          <div className="grid lg:grid-cols-2 gap-8">
-            <div className="rounded-2xl overflow-hidden h-[300px] lg:h-[400px] bg-gray-200">
+          <h2 className="text-4xl lg:text-5xl font-display text-center mb-16 text-charcoal">Perfectly Located in Whitefield</h2>
+          <div className="grid lg:grid-cols-2 gap-12">
+            <div className="rounded-2xl overflow-hidden h-[400px] bg-gray-200">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d62208.12345678901!2d77.7499!3d12.9698!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sWhitefield%2C%20Bangalore!5e0!3m2!1sen!2sin!4v1234567890"
                 width="100%"
@@ -420,109 +389,109 @@ const Home = () => {
               />
             </div>
             <div>
-              <Accordion type="single" collapsible className="space-y-3">
+              <Accordion type="single" collapsible className="space-y-4">
                 {proximities.map((prox, idx) => (
                   <AccordionItem key={idx} value={`item-${idx}`} className="border border-gold/20 rounded-lg px-4">
-                    <AccordionTrigger className="text-left text-sm lg:text-base font-medium hover:text-gold">{prox.title}</AccordionTrigger>
-                    <AccordionContent className="text-sm text-gray-600">{prox.description}</AccordionContent>
+                    <AccordionTrigger className="text-left font-medium hover:text-gold">{prox.title}</AccordionTrigger>
+                    <AccordionContent className="text-gray-600">{prox.description}</AccordionContent>
                   </AccordionItem>
                 ))}
               </Accordion>
             </div>
           </div>
-          <div className="text-center mt-8">
+          <div className="text-center mt-12">
             <Button onClick={scrollToForm} size="lg" className="bg-gold hover:bg-gold-dark text-white rounded-full px-8">Book a Site Visit</Button>
           </div>
         </div>
       </section>
 
       {/* Final CTA + Form Section */}
-      <section id="book-visit" className="relative py-20 lg:py-32">
+      <section id="book-visit" className="relative py-24 lg:py-40">
         <div className="absolute inset-0">
-          <img src={galleryImages[0]} alt="Book Visit" className="w-full h-full object-cover" loading="lazy" />
+          <img src={galleryImages[0]} alt="Book Visit" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/60" />
         </div>
         <div className="container mx-auto px-4 lg:px-8 relative z-10">
           <div className="max-w-3xl mx-auto text-center text-white">
-            <h2 className="text-3xl lg:text-6xl font-display mb-4 lg:mb-6">Ready to Experience Brigade Avalon?</h2>
-            <p className="text-lg lg:text-2xl mb-8 lg:mb-12">Book a private tour and our team will get in touch.</p>
+            <h2 className="text-4xl lg:text-6xl font-display mb-6">Ready to Experience Brigade Avalon?</h2>
+            <p className="text-xl lg:text-2xl mb-12">Book a private tour and our team will get in touch.</p>
             <Card className="bg-white/10 backdrop-blur-md border-white/20">
-              <CardContent className="p-8 lg:p-12">
-                <form onSubmit={handleSubmit} className="space-y-5 lg:space-y-6">
+              <CardContent className="p-10 lg:p-12">
+                <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="text-left">
-                    <label className="block text-white font-medium mb-2 text-base lg:text-lg">Full Name *</label>
+                    <label className="block text-white font-medium mb-2 text-lg">Full Name *</label>
                     <Input
                       type="text"
                       placeholder="Enter your full name"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="bg-white/90 border-white/30 h-12 lg:h-14 text-base lg:text-lg"
+                      className="bg-white/90 border-white/30 h-14 text-lg"
                       required
                     />
                   </div>
                   
                   <div className="text-left">
-                    <label className="block text-white font-medium mb-2 text-base lg:text-lg">Email</label>
+                    <label className="block text-white font-medium mb-2 text-lg">Email</label>
                     <Input
                       type="email"
                       placeholder="Enter your email (optional)"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="bg-white/90 border-white/30 h-12 lg:h-14 text-base lg:text-lg"
+                      className="bg-white/90 border-white/30 h-14 text-lg"
                     />
                   </div>
                   
                   <div className="text-left">
-                    <label className="block text-white font-medium mb-2 text-base lg:text-lg">Phone Number *</label>
+                    <label className="block text-white font-medium mb-2 text-lg">Phone Number *</label>
                     <Input
                       type="tel"
                       placeholder="Enter your phone number"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="bg-white/90 border-white/30 h-12 lg:h-14 text-base lg:text-lg"
+                      className="bg-white/90 border-white/30 h-14 text-lg"
                       required
                     />
                   </div>
                   
                   <div className="text-left">
-                    <label className="block text-white font-medium mb-3 lg:mb-4 text-base lg:text-lg">Preferred Options</label>
-                    <div className="space-y-3">
-                      <label className="flex items-center space-x-3 lg:space-x-4 cursor-pointer bg-white/5 hover:bg-white/10 p-3 lg:p-4 rounded-lg transition-all">
+                    <label className="block text-white font-medium mb-4 text-lg">Preferred Options</label>
+                    <div className="space-y-4">
+                      <label className="flex items-center space-x-4 cursor-pointer bg-white/5 hover:bg-white/10 p-4 rounded-lg transition-all">
                         <input
                           type="checkbox"
                           checked={formData.bhk3}
                           onChange={(e) => setFormData({ ...formData, bhk3: e.target.checked })}
                           className="w-5 h-5 rounded border-white/30 text-gold focus:ring-gold focus:ring-offset-0"
                         />
-                        <span className="text-white text-base lg:text-lg">3 BHK</span>
+                        <span className="text-white text-lg">3 BHK</span>
                       </label>
                       
-                      <label className="flex items-center space-x-3 lg:space-x-4 cursor-pointer bg-white/5 hover:bg-white/10 p-3 lg:p-4 rounded-lg transition-all">
+                      <label className="flex items-center space-x-4 cursor-pointer bg-white/5 hover:bg-white/10 p-4 rounded-lg transition-all">
                         <input
                           type="checkbox"
                           checked={formData.bhk4}
                           onChange={(e) => setFormData({ ...formData, bhk4: e.target.checked })}
                           className="w-5 h-5 rounded border-white/30 text-gold focus:ring-gold focus:ring-offset-0"
                         />
-                        <span className="text-white text-base lg:text-lg">4.5 BHK</span>
+                        <span className="text-white text-lg">4.5 BHK</span>
                       </label>
                       
-                      <label className="flex items-center space-x-3 lg:space-x-4 cursor-pointer bg-white/5 hover:bg-white/10 p-3 lg:p-4 rounded-lg transition-all">
+                      <label className="flex items-center space-x-4 cursor-pointer bg-white/5 hover:bg-white/10 p-4 rounded-lg transition-all">
                         <input
                           type="checkbox"
                           checked={formData.brochure}
                           onChange={(e) => setFormData({ ...formData, brochure: e.target.checked })}
                           className="w-5 h-5 rounded border-white/30 text-gold focus:ring-gold focus:ring-offset-0"
                         />
-                        <span className="text-white text-base lg:text-lg">Send me brochure and project plan</span>
+                        <span className="text-white text-lg">Send me brochure and project plan</span>
                       </label>
                     </div>
                   </div>
                   
-                  <Button type="submit" size="lg" className="w-full bg-gold hover:bg-gold-dark text-white rounded-full h-12 lg:h-14 text-base lg:text-lg font-semibold mt-6 lg:mt-8" disabled={loading}>
+                  <Button type="submit" size="lg" className="w-full bg-gold hover:bg-gold-dark text-white rounded-full h-14 text-lg font-semibold mt-8" disabled={loading}>
                     {loading ? 'Submitting...' : 'Submit'}
                   </Button>
-                  <p className="text-xs lg:text-sm text-white/70 text-center mt-3 lg:mt-4">Your information is secure and will only be used to contact you about Brigade Avalon.</p>
+                  <p className="text-sm text-white/70 text-center mt-4">Your information is secure and will only be used to contact you about Brigade Avalon.</p>
                 </form>
               </CardContent>
             </Card>
@@ -531,15 +500,15 @@ const Home = () => {
       </section>
 
       {/* Footer */}
-      <footer className="bg-charcoal text-white py-10 lg:py-12">
+      <footer className="bg-charcoal text-white py-12">
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="grid md:grid-cols-3 gap-6 lg:gap-8 mb-6 lg:mb-8">
+          <div className="grid md:grid-cols-3 gap-8 mb-8">
             <div>
-              <div className="text-xl lg:text-2xl font-display font-bold mb-2 text-gold">Brigade Avalon</div>
+              <div className="text-2xl font-display font-bold mb-2 text-gold">Brigade Avalon</div>
               <p className="text-white/70 text-sm">Luxury residences crafted for discerning homeowners</p>
             </div>
             <div>
-              <h3 className="font-semibold mb-3 lg:mb-4">Quick Links</h3>
+              <h3 className="font-semibold mb-4">Quick Links</h3>
               <ul className="space-y-2 text-sm">
                 <li><a href="#gallery" className="text-white/70 hover:text-gold transition-colors">Gallery</a></li>
                 <li><a href="#amenities" className="text-white/70 hover:text-gold transition-colors">Amenities</a></li>
@@ -549,7 +518,7 @@ const Home = () => {
               </ul>
             </div>
             <div>
-              <h3 className="font-semibold mb-3 lg:mb-4">Contact Info</h3>
+              <h3 className="font-semibold mb-4">Contact Info</h3>
               <ul className="space-y-2 text-sm text-white/70">
                 <li>Phone: +91 80 1234 5678</li>
                 <li>Email: info@brigadeavalonwhitefield.com</li>
@@ -557,7 +526,7 @@ const Home = () => {
               </ul>
             </div>
           </div>
-          <div className="border-t border-white/10 pt-6 text-center text-xs lg:text-sm text-white/50">
+          <div className="border-t border-white/10 pt-6 text-center text-sm text-white/50">
             <p>&copy; 2025 Brigade Avalon. All rights reserved. | <a href="#" className="hover:text-gold">Privacy Policy</a></p>
           </div>
         </div>
@@ -567,7 +536,7 @@ const Home = () => {
       {lightboxOpen && (
         <div className="fixed inset-0 z-[100] bg-black/95 flex items-center justify-center p-4" onClick={() => setLightboxOpen(false)}>
           <button className="absolute top-4 right-4 text-white text-4xl hover:text-gold">&times;</button>
-          <img src={lightboxImage} alt="Gallery" className="max-w-full max-h-full object-contain" loading="lazy" />
+          <img src={lightboxImage} alt="Gallery" className="max-w-full max-h-full object-contain" />
         </div>
       )}
     </div>
