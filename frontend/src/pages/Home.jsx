@@ -716,11 +716,19 @@ const Home = () => {
         <div className="container mx-auto px-4 lg:px-8">
           <div className="grid md:grid-cols-3 gap-6 lg:gap-8 mb-6 lg:mb-8">
             <div>
-              <img 
-                src="https://customer-assets.emergentagent.com/job_brigade-avalon/artifacts/v933x2ub_image.png" 
-                alt="BuildNest Realty" 
-                className="h-10 lg:h-12 mb-3 brightness-0 invert"
-              />
+              <div className="flex items-center gap-3 mb-3">
+                <img 
+                  src="https://customer-assets.emergentagent.com/job_brigade-avalon/artifacts/p39hlvl5_image.png" 
+                  alt="BuildNest Realty Logo" 
+                  className="h-8 lg:h-10 brightness-0 invert"
+                />
+                <div className="text-lg lg:text-xl leading-tight">
+                  <span className="font-bold text-white">Build</span>
+                  <span className="font-bold text-yellow-400">N</span>
+                  <span className="font-bold text-white">est</span>
+                  <span className="font-normal ml-1 text-white">Realty</span>
+                </div>
+              </div>
               <p className="text-white/70 text-sm">For those who thought they had everything</p>
             </div>
             <div>
