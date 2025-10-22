@@ -439,7 +439,7 @@ const Home = () => {
           <div className="grid lg:grid-cols-2 gap-8">
             <div className="rounded-2xl overflow-hidden h-[300px] lg:h-[400px] bg-gray-200">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.1234567890123!2d77.74!3d12.97!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae13af0000000f%3A0x0!2sBrigade%20Avalon%2C%20Whitefield!5e0!3m2!1sen!2sin!4v1234567890&markers=color:red%7Clabel:A%7C12.97,77.74"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.9647614!2d77.745827!3d12.9647614!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae0fbce8c3b737%3A0x35d54209821e8964!2sBrigade%20Avalon!5e0!3m2!1sen!2sin!4v1234567890"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
