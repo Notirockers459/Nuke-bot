@@ -89,17 +89,17 @@ const Home = () => {
     { 
       icon: Waves, 
       title: 'Infinity Pool & Sun Deck',
-      image: 'https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=600&q=75'
+      image: 'https://images.unsplash.com/photo-1575429198097-0414ec08e8cd?w=600&q=75'
     },
     { 
       icon: Dumbbell, 
       title: 'State-of-the-Art Gym',
-      image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&q=75'
+      image: 'https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=600&q=75'
     },
     { 
       icon: Leaf, 
       title: 'Yoga Deck & Wellness Studio',
-      image: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=600&q=75'
+      image: 'https://images.unsplash.com/photo-1599901860904-17e6ed7083a0?w=600&q=75'
     },
     { 
       icon: Sparkles, 
@@ -109,42 +109,42 @@ const Home = () => {
     { 
       icon: Baby, 
       title: "Children's Play Zone",
-      image: 'https://images.unsplash.com/photo-1587974928442-77dc3e0dba72?w=600&q=75'
+      image: 'https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=600&q=75'
     },
     { 
       icon: Shield, 
       title: '24/7 Security',
-      image: 'https://images.unsplash.com/photo-1557597774-9d273605dfa9?w=600&q=75'
+      image: 'https://images.unsplash.com/photo-1496368077930-c1e31b4e5b44?w=600&q=75'
     },
     { 
       icon: Grid3x3, 
       title: 'Sky Gardens',
-      image: 'https://images.unsplash.com/photo-1558904541-efa843a96f01?w=600&q=75'
+      image: 'https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=600&q=75'
     },
     { 
       icon: HomeIcon, 
       title: 'Premium Clubhouse',
-      image: 'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?w=600&q=75'
+      image: 'https://images.unsplash.com/photo-1574643156929-51fa098b0394?w=600&q=75'
     },
     { 
       icon: Users, 
       title: 'Banquet Hall',
-      image: 'https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=600&q=75'
+      image: 'https://images.unsplash.com/photo-1519167758481-83f29da8c9eb?w=600&q=75'
     },
     { 
       icon: Dumbbell, 
       title: 'Tennis Court',
-      image: 'https://images.unsplash.com/photo-1622163642998-1ea32b0bbc67?w=600&q=75'
+      image: 'https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=600&q=75'
     },
     { 
       icon: Waves, 
       title: 'Jogging Track',
-      image: 'https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?w=600&q=75'
+      image: 'https://images.unsplash.com/photo-1483721310020-03333e577078?w=600&q=75'
     },
     { 
       icon: Leaf, 
       title: 'Meditation Garden',
-      image: 'https://images.unsplash.com/photo-1591228127791-8e2eaef098d3?w=600&q=75'
+      image: 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600&q=75'
     }
   ];
 
