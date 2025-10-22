@@ -29,7 +29,7 @@ const Home = () => {
   
   // Gallery images - Your actual Brigade Avalon photos (15 images total)
   const galleryImages = [
-    'https://customer-assets.emergentagent.com/job_brigade-avalon/artifacts/co5dob7n_image.png',
+    'https://customer-assets.emergentagent.com/job_brigade-avalon/artifacts/oy07hf21_image.png',
     'https://customer-assets.emergentagent.com/job_brigade-avalon/artifacts/h3eg75p6_image.png',
     'https://customer-assets.emergentagent.com/job_brigade-avalon/artifacts/se2yja4h_image.png',
     'https://customer-assets.emergentagent.com/job_brigade-avalon/artifacts/ej5x1fei_image.png',
@@ -153,14 +153,14 @@ const Home = () => {
       type: '3 BHK',
       sqft: '2,933',
       price: '₹4.62 Cr Onwards',
-      image: 'https://images.unsplash.com/photo-1503174971373-b1f69850bded?w=600&q=70',
+      image: 'https://customer-assets.emergentagent.com/job_brigade-avalon/artifacts/fwaxxscl_image.png',
       description: 'Spacious 3-bedroom layout with modern amenities and elegant finishes'
     },
     {
       type: '4.5 BHK',
       sqft: '3,862',
       price: '₹8 Cr Onwards',
-      image: 'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=600&q=70',
+      image: 'https://customer-assets.emergentagent.com/job_brigade-avalon/artifacts/b6i51ubm_image.png',
       description: 'Luxurious 4.5-bedroom configuration with premium fixtures and expansive living areas'
     }
   ];
