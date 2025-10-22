@@ -25,11 +25,11 @@ const Home = () => {
   const [lightboxImage, setLightboxImage] = useState('');
   const carouselRef = React.useRef(null);
 
-  const heroImage = 'https://images.unsplash.com/photo-1758193431355-54df41421657?w=800&q=75';
+  const heroImage = 'https://customer-assets.emergentagent.com/job_brigade-avalon/artifacts/keok043s_image.png';
   
   // Gallery images - Your actual Brigade Avalon photos (15 images total)
   const galleryImages = [
-    'https://customer-assets.emergentagent.com/job_brigade-avalon/artifacts/oy07hf21_image.png',
+    'https://customer-assets.emergentagent.com/job_brigade-avalon/artifacts/amymak8l_image.png',
     'https://customer-assets.emergentagent.com/job_brigade-avalon/artifacts/h3eg75p6_image.png',
     'https://customer-assets.emergentagent.com/job_brigade-avalon/artifacts/se2yja4h_image.png',
     'https://customer-assets.emergentagent.com/job_brigade-avalon/artifacts/ej5x1fei_image.png',
