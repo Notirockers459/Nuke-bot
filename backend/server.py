@@ -91,8 +91,8 @@ async def submit_to_crm(data: dict):
     import requests
     
     crm_url = 'https://cloud.paramantra.com/paramantra/api/data/new/format/json'
-    api_key = '5FAKyMBA1KF4w6FsD5rr4FB0Go'
-    app_name = 'xsFED'
+    api_key = os.environ.get('CRM_API_KEY', '5FAKyMBA1KF4w6FsD5rr4FB0Go')
+    app_name = os.environ.get('CRM_APP_NAME', 'xsFED')
     
     headers = {
         'X-API-KEY': api_key,
