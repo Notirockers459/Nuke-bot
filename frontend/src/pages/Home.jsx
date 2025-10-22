@@ -283,7 +283,7 @@ const Home = () => {
         <div className="grid lg:grid-cols-2 min-h-[90vh]">
           <div className="relative h-[50vh] lg:h-auto">
             <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-black/30 z-10" />
-            <img src={heroImage} alt="Brigade Avalon" className="w-full h-full object-cover" loading="eager" />
+            <img src={heroImage} alt="Brigade Avalon" className="w-full h-full object-cover object-right" loading="eager" />
             <div className="absolute inset-0 z-20 flex flex-col justify-center px-6 lg:px-12">
               <h1 className="text-4xl lg:text-6xl font-display text-white mb-4 animate-fade-in">Discover Brigade Avalon</h1>
               <p className="text-xl lg:text-2xl text-white/90 mb-2 animate-fade-in-delay">Where Calm Meets Excellence</p>
