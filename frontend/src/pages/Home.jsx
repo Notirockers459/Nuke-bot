@@ -355,16 +355,16 @@ const Home = () => {
               className="flex gap-3 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-4 px-4 -mx-4" 
               style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
             >
-              {[...galleryImages, ...galleryImages].map((img, idx) => (
+              {[...galleryImages, ...galleryImages, ...galleryImages].map((img, idx) => (
                 <div 
                   key={idx} 
-                  className="flex-shrink-0 w-[240px] h-[240px] snap-center"
+                  className="flex-shrink-0 w-[280px] h-[280px] snap-center"
                   onClick={() => openLightbox(img)}
                 >
-                  <div className="relative overflow-hidden rounded-lg h-full shadow-md">
+                  <div className="relative overflow-hidden rounded-xl h-full shadow-lg">
                     <img src={img} alt={`Gallery ${(idx % galleryImages.length) + 1}`} className="w-full h-full object-cover" loading="lazy" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent flex items-end p-3">
-                      <span className="text-white text-xs font-medium">Tap to view</span>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent flex items-end p-3">
+                      <span className="text-white text-sm font-medium">Tap to view</span>
                     </div>
                   </div>
                 </div>
@@ -378,7 +378,7 @@ const Home = () => {
           </div>
 
           {/* Desktop Grid - Simplified */}
-          <div className="hidden lg:grid grid-cols-3 gap-4 max-w-5xl mx-auto">
+          <div className="hidden lg:grid grid-cols-3 xl:grid-cols-4 gap-4 max-w-6xl mx-auto">
             {galleryImages.map((img, idx) => (
               <div key={idx} className="group relative overflow-hidden rounded-lg aspect-square cursor-pointer" onClick={() => openLightbox(img)}>
                 <img src={img} alt={`Gallery ${idx + 1}`} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" />
