@@ -716,42 +716,42 @@ const Home = () => {
         <div className="container mx-auto px-4 lg:px-8">
           <div className="grid md:grid-cols-3 gap-6 lg:gap-8 mb-6 lg:mb-8">
             <div>
-              <div className="flex items-center gap-3 mb-3">
-                <img 
-                  src="https://customer-assets.emergentagent.com/job_brigade-avalon/artifacts/p39hlvl5_image.png" 
-                  alt="BuildNest Realty Logo" 
-                  className="h-8 lg:h-10 brightness-0 invert"
-                />
-                <div className="text-lg lg:text-xl leading-tight">
-                  <span className="font-bold text-white">Build</span>
-                  <span className="font-bold text-yellow-400">N</span>
-                  <span className="font-bold text-white">est</span>
-                  <span className="font-normal ml-1 text-white">Realty</span>
-                </div>
-              </div>
-              <p className="text-white/70 text-sm">For those who thought they had everything</p>
-            </div>
-            <div>
               <h3 className="font-semibold mb-3 lg:mb-4">Quick Links</h3>
               <ul className="space-y-2 text-sm">
                 <li><a href="#gallery" className="text-white/70 hover:text-gold transition-colors">Gallery</a></li>
                 <li><a href="#amenities" className="text-white/70 hover:text-gold transition-colors">Amenities</a></li>
                 <li><a href="#floor-plans" className="text-white/70 hover:text-gold transition-colors">Floor Plans</a></li>
                 <li><a href="#location" className="text-white/70 hover:text-gold transition-colors">Location</a></li>
-                <li><a href="#book-visit" className="text-white/70 hover:text-gold transition-colors">Contact</a></li>
+                <li><a href="https://www.instagram.com/buildnestrealty" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-gold transition-colors">Instagram</a></li>
               </ul>
             </div>
             <div>
-              <h3 className="font-semibold mb-3 lg:mb-4">Contact Info</h3>
+              <h3 className="font-semibold mb-3 lg:mb-4">Contact</h3>
               <ul className="space-y-2 text-sm text-white/70">
-                <li>Phone: +91 80 1234 5678</li>
-                <li>Email: info@brigadeavalonwhitefield.com</li>
-                <li>Address: Whitefield, Bangalore, Karnataka</li>
+                <li>
+                  <a href="tel:+919972700772" className="hover:text-gold transition-colors">
+                    +91 9972700772
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="font-semibold mb-3 lg:mb-4">BuildNest Office</h3>
+              <ul className="space-y-2 text-sm text-white/70">
+                <li>491-1, Nimishamba Square, 1st floor,</li>
+                <li>opp Udupi garden, talacauvery layout,</li>
+                <li>Amruthalli main road,</li>
+                <li>Bangalore - 560092</li>
+                <li className="pt-2">
+                  <a href="mailto:support@buildnestrealty.com" className="hover:text-gold transition-colors">
+                    support@buildnestrealty.com
+                  </a>
+                </li>
               </ul>
             </div>
           </div>
           <div className="border-t border-white/10 pt-6 text-center text-xs lg:text-sm text-white/50">
-            <p>&copy; 2025 Brigade Avalon. All rights reserved. | <a href="#" className="hover:text-gold">Privacy Policy</a></p>
+            <p>© 2025 BuildNest Private Limited – Marketing Partner for Brigade Avalon</p>
           </div>
         </div>
       </footer>
