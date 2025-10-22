@@ -27,14 +27,18 @@ const Home = () => {
 
   const heroImage = 'https://images.unsplash.com/photo-1758193431355-54df41421657?w=800&q=75';
   
-  // Optimized gallery - 6 images, compressed for faster loading
+  // Gallery images - optimized for mobile
   const galleryImages = [
-    'https://images.unsplash.com/photo-1638454668466-e8dbd5462f20?w=500&q=70',
-    'https://images.unsplash.com/photo-1715985160020-d8cd6fdc8ba9?w=500&q=70',
-    'https://images.unsplash.com/photo-1543489822-c49534f3271f?w=500&q=70',
-    'https://images.unsplash.com/photo-1521750465-672a0f580901?w=500&q=70',
-    'https://images.unsplash.com/photo-1758448756350-3d0eec02ba37?w=500&q=70',
-    'https://images.unsplash.com/photo-1668854824157-c4143ea7ca6b?w=500&q=70'
+    'https://images.unsplash.com/photo-1638454668466-e8dbd5462f20?w=600&q=75',
+    'https://images.unsplash.com/photo-1715985160020-d8cd6fdc8ba9?w=600&q=75',
+    'https://images.unsplash.com/photo-1543489822-c49534f3271f?w=600&q=75',
+    'https://images.unsplash.com/photo-1521750465-672a0f580901?w=600&q=75',
+    'https://images.unsplash.com/photo-1758448756350-3d0eec02ba37?w=600&q=75',
+    'https://images.unsplash.com/photo-1668854824157-c4143ea7ca6b?w=600&q=75',
+    'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&q=75',
+    'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600&q=75',
+    'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=600&q=75',
+    'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=600&q=75'
   ];
 
   const stats = [
