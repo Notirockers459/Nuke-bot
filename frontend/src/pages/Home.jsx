@@ -27,7 +27,7 @@ const Home = () => {
 
   const heroImage = 'https://customer-assets.emergentagent.com/job_brigade-avalon/artifacts/keok043s_image.png';
   
-  // Gallery images - Your actual Brigade Avalon photos (15 images total)
+  // Gallery images - Your actual Brigade Avalon photos (18 images total)
   const galleryImages = [
     'https://customer-assets.emergentagent.com/job_brigade-avalon/artifacts/amymak8l_image.png',
     'https://customer-assets.emergentagent.com/job_brigade-avalon/artifacts/h3eg75p6_image.png',
@@ -43,7 +43,10 @@ const Home = () => {
     'https://customer-assets.emergentagent.com/job_brigade-avalon/artifacts/3zan03sc_image.png',
     'https://customer-assets.emergentagent.com/job_brigade-avalon/artifacts/qym8mkon_image.png',
     'https://customer-assets.emergentagent.com/job_brigade-avalon/artifacts/ksh5tcht_image.png',
-    'https://customer-assets.emergentagent.com/job_brigade-avalon/artifacts/9drrefc1_image.png'
+    'https://customer-assets.emergentagent.com/job_brigade-avalon/artifacts/9drrefc1_image.png',
+    'https://customer-assets.emergentagent.com/job_brigade-avalon/artifacts/84pgftxh_image.png',
+    'https://customer-assets.emergentagent.com/job_brigade-avalon/artifacts/s6e0iu3a_image.png',
+    'https://customer-assets.emergentagent.com/job_brigade-avalon/artifacts/3silheo4_image.png'
   ];
 
   const stats = [
