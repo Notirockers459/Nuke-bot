@@ -86,14 +86,66 @@ const Home = () => {
   ];
 
   const amenities = [
-    { icon: Waves, title: 'Infinity Pool & Sun Deck' },
-    { icon: Dumbbell, title: 'State-of-the-Art Gym' },
-    { icon: Leaf, title: 'Yoga Deck & Wellness Studio' },
-    { icon: Sparkles, title: 'Concierge & Smart Home Automation' },
-    { icon: Baby, title: "Children's Play Zone" },
-    { icon: Shield, title: '24/7 Security & Surveillance' },
-    { icon: Grid3x3, title: 'Landscaped Terraces & Sky Gardens' },
-    { icon: HomeIcon, title: 'Premium Clubhouse Spaces' }
+    { 
+      icon: Waves, 
+      title: 'Infinity Pool & Sun Deck',
+      image: 'https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=600&q=75'
+    },
+    { 
+      icon: Dumbbell, 
+      title: 'State-of-the-Art Gym',
+      image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&q=75'
+    },
+    { 
+      icon: Leaf, 
+      title: 'Yoga Deck & Wellness Studio',
+      image: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=600&q=75'
+    },
+    { 
+      icon: Sparkles, 
+      title: 'Concierge & Smart Home',
+      image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=75'
+    },
+    { 
+      icon: Baby, 
+      title: "Children's Play Zone",
+      image: 'https://images.unsplash.com/photo-1587974928442-77dc3e0dba72?w=600&q=75'
+    },
+    { 
+      icon: Shield, 
+      title: '24/7 Security',
+      image: 'https://images.unsplash.com/photo-1557597774-9d273605dfa9?w=600&q=75'
+    },
+    { 
+      icon: Grid3x3, 
+      title: 'Sky Gardens',
+      image: 'https://images.unsplash.com/photo-1558904541-efa843a96f01?w=600&q=75'
+    },
+    { 
+      icon: HomeIcon, 
+      title: 'Premium Clubhouse',
+      image: 'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?w=600&q=75'
+    },
+    { 
+      icon: Users, 
+      title: 'Banquet Hall',
+      image: 'https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=600&q=75'
+    },
+    { 
+      icon: Dumbbell, 
+      title: 'Tennis Court',
+      image: 'https://images.unsplash.com/photo-1622163642998-1ea32b0bbc67?w=600&q=75'
+    },
+    { 
+      icon: Waves, 
+      title: 'Jogging Track',
+      image: 'https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?w=600&q=75'
+    },
+    { 
+      icon: Leaf, 
+      title: 'Meditation Garden',
+      image: 'https://images.unsplash.com/photo-1591228127791-8e2eaef098d3?w=600&q=75'
+    }
   ];
 
   const floorPlans = [
