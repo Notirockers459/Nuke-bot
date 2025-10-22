@@ -432,6 +432,74 @@ const Home = () => {
         </div>
       </section>
 
+      {/* Master Plan Section */}
+      <section id="master-plan" className="py-16 lg:py-24 bg-gray-50">
+        <div className="container mx-auto px-4 lg:px-8">
+          <h2 className="text-3xl lg:text-5xl font-display text-center mb-3 text-charcoal">Master Plan</h2>
+          <p className="text-center text-base lg:text-lg text-gray-600 mb-8 lg:mb-12">A meticulously planned community designed for modern living</p>
+          
+          <div className="max-w-5xl mx-auto">
+            <Card className="border-gold/20 overflow-hidden">
+              <div className="relative bg-gray-100 aspect-[16/10] lg:aspect-[16/9]">
+                <img 
+                  src="https://images.unsplash.com/photo-1503174971373-b1f69850bded?w=1200&q=80" 
+                  alt="Brigade Avalon Master Plan" 
+                  className="w-full h-full object-contain p-4 lg:p-8 cursor-pointer hover:scale-105 transition-transform duration-300" 
+                  loading="lazy"
+                  onClick={() => openLightbox('https://images.unsplash.com/photo-1503174971373-b1f69850bded?w=1200&q=80')}
+                />
+                <div className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium text-charcoal">
+                  Click to enlarge
+                </div>
+              </div>
+              <CardContent className="p-6 lg:p-8">
+                <p className="text-center text-gray-600 text-sm lg:text-base">
+                  Explore the comprehensive layout of Brigade Avalon showcasing 3 towers, expansive green spaces, premium amenities, and thoughtfully planned access points.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+
+          <div className="text-center mt-8">
+            <Button onClick={scrollToForm} size="lg" className="bg-gold hover:bg-gold-dark text-white rounded-full px-8">Book a Site Visit</Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Terrace Plan Section */}
+      <section id="terrace-plan" className="py-16 lg:py-24 bg-white">
+        <div className="container mx-auto px-4 lg:px-8">
+          <h2 className="text-3xl lg:text-5xl font-display text-center mb-3 text-charcoal">Terrace Plan</h2>
+          <p className="text-center text-base lg:text-lg text-gray-600 mb-8 lg:mb-12">Exclusive terrace layouts with breathtaking views and premium outdoor spaces</p>
+          
+          <div className="max-w-5xl mx-auto">
+            <Card className="border-gold/20 overflow-hidden">
+              <div className="relative bg-gray-100 aspect-[16/10] lg:aspect-[16/9]">
+                <img 
+                  src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=1200&q=80" 
+                  alt="Brigade Avalon Terrace Plan" 
+                  className="w-full h-full object-contain p-4 lg:p-8 cursor-pointer hover:scale-105 transition-transform duration-300" 
+                  loading="lazy"
+                  onClick={() => openLightbox('https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=1200&q=80')}
+                />
+                <div className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium text-charcoal">
+                  Click to enlarge
+                </div>
+              </div>
+              <CardContent className="p-6 lg:p-8">
+                <p className="text-center text-gray-600 text-sm lg:text-base">
+                  Discover the luxurious terrace configurations featuring landscaped gardens, seating areas, and panoramic views of Whitefield skyline.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+
+          <div className="text-center mt-8">
+            <Button onClick={scrollToForm} size="lg" className="bg-gold hover:bg-gold-dark text-white rounded-full px-8">Book a Site Visit</Button>
+          </div>
+        </div>
+      </section>
+
       {/* Location Section */}
       <section id="location" className="py-16 lg:py-24 bg-gray-50">
         <div className="container mx-auto px-4 lg:px-8">
