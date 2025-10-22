@@ -422,10 +422,15 @@ const Home = () => {
           <div className="grid md:grid-cols-2 gap-6 lg:gap-8 max-w-6xl mx-auto">
             {floorPlans.map((plan, idx) => (
               <Card key={idx} className="border-gold/20 hover:border-gold transition-all overflow-hidden">
-                <div className="relative h-[250px] lg:h-[300px] bg-gray-100">
+                <div className="relative h-[250px] lg:h-[300px] bg-gray-100 cursor-pointer" onClick={() => openLightbox(plan.image)}>
                   <img src={plan.image} alt={`${plan.type} Floor Plan`} className="w-full h-full object-cover" loading="lazy" />
                   <div className="absolute top-4 left-4 bg-gold text-white px-4 py-2 rounded-full font-bold">
                     {plan.type}
+                  </div>
+                  <div className="absolute inset-0 bg-black/0 hover:bg-black/10 transition-all flex items-center justify-center opacity-0 hover:opacity-100">
+                    <div className="bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium text-charcoal">
+                      Click to enlarge
+                    </div>
                   </div>
                 </div>
                 <CardContent className="p-6">
@@ -441,7 +446,13 @@ const Home = () => {
                     <div className="text-xl font-bold text-charcoal">{plan.price}</div>
                   </div>
                   <p className="text-sm lg:text-base text-gray-600 mb-4">{plan.description}</p>
-                  <Button variant="outline" className="w-full border-gold text-gold hover:bg-gold hover:text-white rounded-full">View Detailed Plan</Button>
+                  <Button 
+                    variant="outline" 
+                    className="w-full border-gold text-gold hover:bg-gold hover:text-white rounded-full"
+                    onClick={() => openLightbox(plan.image)}
+                  >
+                    View Detailed Plan
+                  </Button>
                 </CardContent>
               </Card>
             ))}
