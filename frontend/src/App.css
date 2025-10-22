@@ -10,7 +10,7 @@
 }
 
 .font-display {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Cormorant Garamond', serif;
 }
 
 .text-gold {
@@ -45,12 +45,24 @@
   border-color: rgba(197, 161, 90, 0.2);
 }
 
+.border-gold\/30 {
+  border-color: rgba(197, 161, 90, 0.3);
+}
+
 .hover\:border-gold:hover {
   border-color: var(--gold);
 }
 
 .hover\:text-gold:hover {
   color: var(--gold);
+}
+
+.decoration-gold\/30 {
+  text-decoration-color: rgba(197, 161, 90, 0.3);
+}
+
+.decoration-gold {
+  text-decoration-color: var(--gold);
 }
 
 /* Smooth scroll behavior */
@@ -69,6 +81,11 @@ button:hover {
 
 button:active {
   transform: translateY(0);
+}
+
+/* Link hover effects */
+a {
+  transition: all 0.2s ease;
 }
 
 /* Card hover effects */
@@ -125,4 +142,17 @@ section {
   width: 60px;
   height: 3px;
   background-color: var(--gold);
+}
+
+/* Smooth box shadows */
+.shadow-luxury {
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
