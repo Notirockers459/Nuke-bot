@@ -569,38 +569,42 @@ const Home = () => {
       <section className="py-12 lg:py-16 bg-gradient-to-r from-charcoal to-gray-800">
         <div className="container mx-auto px-4 lg:px-8">
           <Card className="max-w-4xl mx-auto bg-white/95 backdrop-blur-sm border-gold/30 shadow-2xl">
-            <CardContent className="p-8 lg:p-12 text-center">
+            <CardContent className="p-6 lg:p-12 text-center">
               <div className="mb-6">
                 <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gold/10 mb-4">
                   <Shield className="w-8 h-8 text-gold" />
                 </div>
                 <h3 className="text-2xl lg:text-3xl font-display font-bold text-charcoal mb-2">RERA Registered Project</h3>
-                <p className="text-gray-600 mb-6">Verified and approved by Karnataka Real Estate Regulatory Authority</p>
+                <p className="text-gray-600 mb-6 text-sm lg:text-base">Verified and approved by Karnataka Real Estate Regulatory Authority</p>
               </div>
               
-              <div className="bg-gray-50 rounded-xl p-6 lg:p-8 border-2 border-gold/20">
+              <div className="bg-gray-50 rounded-xl p-4 lg:p-8 border-2 border-gold/20">
                 <div className="mb-4">
-                  <div className="text-sm text-gray-500 uppercase tracking-wide mb-2">RERA Registration Number</div>
-                  <div className="text-xl lg:text-2xl font-mono font-bold text-charcoal bg-white px-4 py-3 rounded-lg border border-gold/30 inline-block">
-                    PRM/KA/RERA/1251/446/PR/300625/007888
+                  <div className="text-xs lg:text-sm text-gray-500 uppercase tracking-wide mb-3">RERA Registration Number</div>
+                  <div className="bg-white px-3 py-3 lg:px-4 lg:py-4 rounded-lg border border-gold/30">
+                    <div className="text-sm lg:text-xl font-mono font-bold text-charcoal break-all">
+                      PRM/KA/RERA/1251/446/PR/300625/007888
+                    </div>
                   </div>
                 </div>
                 
-                <div className="flex items-center justify-center gap-2 text-gray-600 mt-6">
-                  <CheckCircle className="w-5 h-5 text-green-600" />
-                  <span className="text-sm">Available at</span>
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-2 text-gray-600 mt-6">
+                  <div className="flex items-center gap-2">
+                    <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0" />
+                    <span className="text-xs lg:text-sm">Available at</span>
+                  </div>
                   <a 
                     href="https://rera.karnataka.gov.in/" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="text-gold hover:text-gold-dark font-semibold underline decoration-gold/30 hover:decoration-gold transition-colors"
+                    className="text-gold hover:text-gold-dark font-semibold underline decoration-gold/30 hover:decoration-gold transition-colors text-xs lg:text-sm break-all"
                   >
                     rera.karnataka.gov.in
                   </a>
                 </div>
               </div>
               
-              <p className="text-xs text-gray-500 mt-6 italic">
+              <p className="text-xs text-gray-500 mt-6 italic px-2">
                 This project is registered under RERA and complies with all regulatory requirements for transparency and buyer protection.
               </p>
             </CardContent>
