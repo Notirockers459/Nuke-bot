@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ChevronDown, MapPin, Building2, Home as HomeIcon, Ruler, IndianRupee, Users, Shield, Dumbbell, Waves, Leaf, Baby, Grid3x3, Sparkles, CheckCircle2, X } from 'lucide-react';
+import { ChevronDown, MapPin, Building2, Home as HomeIcon, Ruler, IndianRupee, Users, Shield, Dumbbell, Waves, Leaf, Baby, Grid3x3, Sparkles, CheckCircle2, X, CheckCircle } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
 import { Input } from '../components/ui/input';
@@ -20,6 +20,7 @@ const Home = () => {
     brochure: false
   });
   const [loading, setLoading] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxImage, setLightboxImage] = useState('');
   const [expandedStat, setExpandedStat] = useState(null);
@@ -27,7 +28,6 @@ const Home = () => {
 
   const heroImage = 'https://images.unsplash.com/photo-1758193431355-54df41421657?w=800&q=75';
   
-  // Gallery images - optimized for mobile
   const galleryImages = [
     'https://images.unsplash.com/photo-1638454668466-e8dbd5462f20?w=600&q=75',
     'https://images.unsplash.com/photo-1715985160020-d8cd6fdc8ba9?w=600&q=75',
@@ -46,35 +46,35 @@ const Home = () => {
       label: 'Towers', 
       value: '3', 
       icon: Building2,
-      image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=400&q=70',
+      image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=600&q=75',
       expandable: true 
     },
     { 
       label: 'Floors', 
       value: '15 each', 
       icon: HomeIcon,
-      image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=400&q=70',
+      image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=600&q=75',
       expandable: true 
     },
     { 
       label: 'Total Flats', 
       value: '206', 
       icon: Users,
-      image: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=400&q=70',
+      image: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600&q=75',
       expandable: true 
     },
     { 
       label: 'Unit Types', 
       value: '3 & 4.5 BHK', 
       icon: Ruler,
-      image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=400&q=70',
+      image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&q=75',
       expandable: true 
     },
     { 
       label: 'Location', 
       value: 'Whitefield, Bangalore', 
       icon: MapPin,
-      image: 'https://images.unsplash.com/photo-1570168007204-dfb528c6958f?w=400&q=70',
+      image: 'https://images.unsplash.com/photo-1570168007204-dfb528c6958f?w=600&q=75',
       expandable: true 
     },
     { 
@@ -98,12 +98,12 @@ const Home = () => {
     },
     { 
       icon: Leaf, 
-      title: 'Yoga Deck & Wellness Studio',
+      title: 'Yoga Deck & Wellness',
       image: 'https://images.unsplash.com/photo-1599901860904-17e6ed7083a0?w=600&q=75'
     },
     { 
       icon: Sparkles, 
-      title: 'Concierge & Smart Home',
+      title: 'Smart Home Tech',
       image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=75'
     },
     { 
@@ -151,13 +151,15 @@ const Home = () => {
   const floorPlans = [
     {
       type: '3 BHK',
-      sqft: '1,850 - 2,100',
+      sqft: '2,933',
+      price: '₹4.62 Cr Onwards',
       image: 'https://images.unsplash.com/photo-1503174971373-b1f69850bded?w=600&q=70',
       description: 'Spacious 3-bedroom layout with modern amenities and elegant finishes'
     },
     {
       type: '4.5 BHK',
-      sqft: '2,800 - 3,200',
+      sqft: '3,862',
+      price: '₹8 Cr Onwards',
       image: 'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=600&q=70',
       description: 'Luxurious 4.5-bedroom configuration with premium fixtures and expansive living areas'
     }
@@ -180,6 +182,16 @@ const Home = () => {
     if (formData.name && formData.phone) {
       setLoading(true);
       try {
+        const preferences = [];
+        if (formData.bhk3) preferences.push('3 BHK');
+        if (formData.bhk4) preferences.push('4.5 BHK');
+        if (formData.brochure) preferences.push('Brochure');
+
+        // Split name into first and last
+        const nameParts = formData.name.trim().split(' ');
+        const firstName = nameParts[0] || '';
+        const lastName = nameParts.slice(1).join(' ') || '';
+
         const leadData = {
           name: formData.name,
           email: formData.email || 'Not provided',
@@ -190,11 +202,33 @@ const Home = () => {
             brochure: formData.brochure
           }
         };
-        const response = await axios.post(`${API}/leads`, leadData);
-        if (response.status === 200) {
-          toast.success('Thank you! Our team will contact you shortly.');
-          setFormData({ name: '', email: '', phone: '', bhk3: false, bhk4: false, brochure: false });
-        }
+
+        // Save to our backend
+        await axios.post(`${API}/leads`, leadData);
+
+        // Send to CRM
+        const crmData = {
+          rep_id: 'Varsha@buildnestrealty.com',
+          channel_id: 'LP_Brigade',
+          subject: 'Lead from Brigade Avalon Website',
+          f_name: firstName,
+          l_name: lastName,
+          email: formData.email || '',
+          phonefax: formData.phone,
+          notes: `Interested in: ${preferences.join(', ') || 'General Inquiry'}`,
+          project: 'Brigade Avalon',
+          alert_client: 0,
+          alert_rep: 0
+        };
+
+        await axios.post(`${API}/crm/submit`, crmData);
+        
+        setShowSuccess(true);
+        setFormData({ name: '', email: '', phone: '', bhk3: false, bhk4: false, brochure: false });
+        
+        setTimeout(() => {
+          setShowSuccess(false);
+        }, 5000);
       } catch (error) {
         console.error('Error submitting lead:', error);
         toast.error('Something went wrong. Please try again.');
@@ -210,11 +244,6 @@ const Home = () => {
     setLightboxImage(image);
     setLightboxOpen(true);
   };
-
-  // Auto-scroll carousel effect - REMOVED to fix glitching
-  React.useEffect(() => {
-    // Removed auto-scroll to prevent glitching
-  }, []);
 
   return (
     <div className="brigade-avalon">
@@ -241,8 +270,9 @@ const Home = () => {
             <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-black/30 z-10" />
             <img src={heroImage} alt="Brigade Avalon" className="w-full h-full object-cover" loading="eager" />
             <div className="absolute inset-0 z-20 flex flex-col justify-center px-6 lg:px-12">
-              <h1 className="text-4xl lg:text-6xl font-display text-white mb-4 animate-fade-in">Brigade Avalon — Homes Crafted for the Few.</h1>
-              <p className="text-xl lg:text-2xl text-white/90 mb-8 animate-fade-in-delay">3 & 4.5 BHK Luxury Residences in Whitefield | Starting at ₹4.62 Cr Onwards.</p>
+              <h1 className="text-4xl lg:text-6xl font-display text-white mb-4 animate-fade-in">Discover Brigade Avalon</h1>
+              <p className="text-xl lg:text-2xl text-white/90 mb-2 animate-fade-in-delay">Where Calm Meets Excellence</p>
+              <p className="text-base lg:text-lg text-white/80 mb-8">3 & 4.5 BHK Luxury Residences in Whitefield | Starting at ₹4.62 Cr</p>
               <div>
                 <Button onClick={scrollToForm} size="lg" className="bg-gold hover:bg-gold-dark text-white rounded-full px-8 text-lg">Book a Site Visit</Button>
               </div>
@@ -252,7 +282,7 @@ const Home = () => {
             </div>
           </div>
 
-          {/* At a Glance with Expandable Cards */}
+          {/* At a Glance with Larger Expandable Images */}
           <div className="bg-charcoal text-white p-6 lg:p-12 flex items-center">
             <div className="w-full">
               <h2 className="text-3xl lg:text-4xl font-display mb-8 text-gold">At a Glance</h2>
@@ -263,10 +293,10 @@ const Home = () => {
                   return (
                     <Card 
                       key={idx} 
-                      className={`bg-white/5 border-white/10 hover:bg-white/10 transition-all cursor-pointer ${isExpanded ? 'col-span-2' : ''}`}
+                      className={`bg-white/5 border-white/10 hover:bg-white/10 transition-all cursor-pointer ${isExpanded ? 'col-span-2 row-span-2' : ''}`}
                       onClick={() => stat.expandable && setExpandedStat(isExpanded ? null : idx)}
                     >
-                      <CardContent className="p-4 lg:p-6">
+                      <CardContent className={`p-4 lg:p-6 ${isExpanded ? 'h-full' : ''}`}>
                         {!isExpanded ? (
                           <>
                             <Icon className="w-8 h-8 lg:w-10 lg:h-10 text-gold mb-2" />
@@ -274,8 +304,8 @@ const Home = () => {
                             <div className="text-xs lg:text-sm text-white/70">{stat.label}</div>
                           </>
                         ) : (
-                          <div className="space-y-3">
-                            <div className="flex items-center justify-between">
+                          <div className="flex flex-col h-full">
+                            <div className="flex items-center justify-between mb-4">
                               <div className="flex items-center gap-3">
                                 <Icon className="w-8 h-8 text-gold" />
                                 <div>
@@ -286,8 +316,8 @@ const Home = () => {
                               <X className="w-5 h-5 text-white/50 hover:text-white" />
                             </div>
                             {stat.image && (
-                              <div className="mt-3 rounded-lg overflow-hidden">
-                                <img src={stat.image} alt={stat.label} className="w-full h-40 object-cover" loading="lazy" />
+                              <div className="flex-1 rounded-lg overflow-hidden">
+                                <img src={stat.image} alt={stat.label} className="w-full h-full object-cover min-h-[200px]" loading="lazy" />
                               </div>
                             )}
                           </div>
@@ -302,12 +332,11 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Gallery Section - Simple Slider */}
+      {/* Gallery Section */}
       <section id="gallery" className="py-16 lg:py-24 bg-white overflow-hidden">
         <div className="container mx-auto px-4 lg:px-8">
           <h2 className="text-3xl lg:text-5xl font-display text-center mb-6 lg:mb-12 text-charcoal">Gallery</h2>
           
-          {/* Mobile Simple Slider */}
           <div className="lg:hidden relative">
             <div 
               ref={carouselRef}
@@ -339,7 +368,6 @@ const Home = () => {
             </div>
           </div>
 
-          {/* Desktop Grid */}
           <div className="hidden lg:grid grid-cols-3 xl:grid-cols-4 gap-4 max-w-6xl mx-auto">
             {galleryImages.map((img, idx) => (
               <div key={idx} className="group relative overflow-hidden rounded-lg aspect-square cursor-pointer" onClick={() => openLightbox(img)}>
@@ -361,7 +389,7 @@ const Home = () => {
       <section id="amenities" className="py-16 lg:py-24 bg-gray-50">
         <div className="container mx-auto px-4 lg:px-8">
           <h2 className="text-3xl lg:text-5xl font-display text-center mb-3 text-charcoal">A Lifestyle Beyond Ordinary</h2>
-          <p className="text-center text-gray-600 mb-8 lg:mb-12">Experience world-class amenities designed for modern living</p>
+          <p className="text-center text-gray-600 mb-8 lg:mb-12">Modern luxury set amidst 80% open spaces and timeless tranquility</p>
           
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 lg:gap-4 max-w-6xl mx-auto">
             {amenities.map((amenity, idx) => {
@@ -394,11 +422,11 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Floor Plans Section - New Design */}
+      {/* Floor Plans Section */}
       <section id="floor-plans" className="py-16 lg:py-24 bg-white">
         <div className="container mx-auto px-4 lg:px-8">
           <h2 className="text-3xl lg:text-5xl font-display text-center mb-3 text-charcoal">Floor Plans & Configurations</h2>
-          <p className="text-center text-base lg:text-lg text-gray-600 mb-8 lg:mb-12">Choose from spacious 3 BHK and 4.5 BHK residences crafted for modern living.</p>
+          <p className="text-center text-base lg:text-lg text-gray-600 mb-8 lg:mb-12">Choose from spacious residences crafted for modern living</p>
           
           <div className="grid md:grid-cols-2 gap-6 lg:gap-8 max-w-6xl mx-auto">
             {floorPlans.map((plan, idx) => (
@@ -417,6 +445,10 @@ const Home = () => {
                       <div className="text-lg font-bold text-gold">{plan.sqft} sq.ft</div>
                     </div>
                   </div>
+                  <div className="mb-3">
+                    <div className="text-sm text-gray-500 mb-1">Starting Price</div>
+                    <div className="text-xl font-bold text-charcoal">{plan.price}</div>
+                  </div>
                   <p className="text-sm lg:text-base text-gray-600 mb-4">{plan.description}</p>
                   <Button variant="outline" className="w-full border-gold text-gold hover:bg-gold hover:text-white rounded-full">View Detailed Plan</Button>
                 </CardContent>
@@ -433,11 +465,11 @@ const Home = () => {
       {/* Location Section */}
       <section id="location" className="py-16 lg:py-24 bg-gray-50">
         <div className="container mx-auto px-4 lg:px-8">
-          <h2 className="text-3xl lg:text-5xl font-display text-center mb-8 lg:mb-12 text-charcoal">Perfectly Located in Whitefield</h2>
+          <h2 className="text-3xl lg:text-5xl font-display text-center mb-8 lg:mb-12 text-charcoal">At the Heart of Whitefield</h2>
           <div className="grid lg:grid-cols-2 gap-8">
             <div className="rounded-2xl overflow-hidden h-[300px] lg:h-[400px] bg-gray-200">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d62208.12345678901!2d77.7499!3d12.9698!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sWhitefield%2C%20Bangalore!5e0!3m2!1sen!2sin!4v1234567890"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.1234567890123!2d77.74!3d12.97!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae13af0000000f%3A0x0!2sBrigade%20Avalon%2C%20Whitefield!5e0!3m2!1sen!2sin!4v1234567890&markers=color:red%7Clabel:A%7C12.97,77.74"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
@@ -472,87 +504,107 @@ const Home = () => {
         <div className="container mx-auto px-4 lg:px-8 relative z-10">
           <div className="max-w-3xl mx-auto text-center text-white">
             <h2 className="text-3xl lg:text-6xl font-display mb-4 lg:mb-6">Ready to Experience Brigade Avalon?</h2>
-            <p className="text-lg lg:text-2xl mb-8 lg:mb-12">Book a private tour and our team will get in touch.</p>
-            <Card className="bg-white/10 backdrop-blur-md border-white/20">
-              <CardContent className="p-8 lg:p-12">
-                <form onSubmit={handleSubmit} className="space-y-5 lg:space-y-6">
-                  <div className="text-left">
-                    <label className="block text-white font-medium mb-2 text-base lg:text-lg">Full Name *</label>
-                    <Input
-                      type="text"
-                      placeholder="Enter your full name"
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="bg-white/90 border-white/30 h-12 lg:h-14 text-base lg:text-lg"
-                      required
-                    />
+            <p className="text-lg lg:text-2xl mb-8 lg:mb-12">Book a private tour and our team will get in touch</p>
+            
+            {showSuccess ? (
+              <Card className="bg-white/95 backdrop-blur-md border-white/20">
+                <CardContent className="p-12 text-center">
+                  <div className="mb-6 inline-flex items-center justify-center w-20 h-20 rounded-full bg-green-100 animate-bounce-in">
+                    <CheckCircle className="w-12 h-12 text-green-600" />
                   </div>
-                  
-                  <div className="text-left">
-                    <label className="block text-white font-medium mb-2 text-base lg:text-lg">Email</label>
-                    <Input
-                      type="email"
-                      placeholder="Enter your email (optional)"
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="bg-white/90 border-white/30 h-12 lg:h-14 text-base lg:text-lg"
-                    />
-                  </div>
-                  
-                  <div className="text-left">
-                    <label className="block text-white font-medium mb-2 text-base lg:text-lg">Phone Number *</label>
-                    <Input
-                      type="tel"
-                      placeholder="Enter your phone number"
-                      value={formData.phone}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="bg-white/90 border-white/30 h-12 lg:h-14 text-base lg:text-lg"
-                      required
-                    />
-                  </div>
-                  
-                  <div className="text-left">
-                    <label className="block text-white font-medium mb-3 lg:mb-4 text-base lg:text-lg">Preferred Options</label>
-                    <div className="space-y-3">
-                      <label className="flex items-center space-x-3 lg:space-x-4 cursor-pointer bg-white/5 hover:bg-white/10 p-3 lg:p-4 rounded-lg transition-all">
-                        <input
-                          type="checkbox"
-                          checked={formData.bhk3}
-                          onChange={(e) => setFormData({ ...formData, bhk3: e.target.checked })}
-                          className="w-5 h-5 rounded border-white/30 text-gold focus:ring-gold focus:ring-offset-0"
-                        />
-                        <span className="text-white text-base lg:text-lg">3 BHK</span>
-                      </label>
-                      
-                      <label className="flex items-center space-x-3 lg:space-x-4 cursor-pointer bg-white/5 hover:bg-white/10 p-3 lg:p-4 rounded-lg transition-all">
-                        <input
-                          type="checkbox"
-                          checked={formData.bhk4}
-                          onChange={(e) => setFormData({ ...formData, bhk4: e.target.checked })}
-                          className="w-5 h-5 rounded border-white/30 text-gold focus:ring-gold focus:ring-offset-0"
-                        />
-                        <span className="text-white text-base lg:text-lg">4.5 BHK</span>
-                      </label>
-                      
-                      <label className="flex items-center space-x-3 lg:space-x-4 cursor-pointer bg-white/5 hover:bg-white/10 p-3 lg:p-4 rounded-lg transition-all">
-                        <input
-                          type="checkbox"
-                          checked={formData.brochure}
-                          onChange={(e) => setFormData({ ...formData, brochure: e.target.checked })}
-                          className="w-5 h-5 rounded border-white/30 text-gold focus:ring-gold focus:ring-offset-0"
-                        />
-                        <span className="text-white text-base lg:text-lg">Send me brochure and project plan</span>
-                      </label>
-                    </div>
-                  </div>
-                  
-                  <Button type="submit" size="lg" className="w-full bg-gold hover:bg-gold-dark text-white rounded-full h-12 lg:h-14 text-base lg:text-lg font-semibold mt-6 lg:mt-8" disabled={loading}>
-                    {loading ? 'Submitting...' : 'Submit'}
+                  <h3 className="text-2xl font-display font-bold text-charcoal mb-3">Thank You!</h3>
+                  <p className="text-gray-700 mb-2">Your inquiry has been submitted successfully.</p>
+                  <p className="text-gray-600 text-sm">Our team will contact you shortly to schedule your site visit.</p>
+                  <Button 
+                    onClick={() => setShowSuccess(false)} 
+                    className="mt-6 bg-gold hover:bg-gold-dark text-white rounded-full px-8"
+                  >
+                    Submit Another Inquiry
                   </Button>
-                  <p className="text-xs lg:text-sm text-white/70 text-center mt-3 lg:mt-4">Your information is secure and will only be used to contact you about Brigade Avalon.</p>
-                </form>
-              </CardContent>
-            </Card>
+                </CardContent>
+              </Card>
+            ) : (
+              <Card className="bg-white/10 backdrop-blur-md border-white/20">
+                <CardContent className="p-8 lg:p-12">
+                  <form onSubmit={handleSubmit} className="space-y-5 lg:space-y-6">
+                    <div className="text-left">
+                      <label className="block text-white font-medium mb-2 text-base lg:text-lg">Full Name *</label>
+                      <Input
+                        type="text"
+                        placeholder="Enter your full name"
+                        value={formData.name}
+                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                        className="bg-white/90 border-white/30 h-12 lg:h-14 text-base lg:text-lg"
+                        required
+                      />
+                    </div>
+                    
+                    <div className="text-left">
+                      <label className="block text-white font-medium mb-2 text-base lg:text-lg">Email</label>
+                      <Input
+                        type="email"
+                        placeholder="Enter your email (optional)"
+                        value={formData.email}
+                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        className="bg-white/90 border-white/30 h-12 lg:h-14 text-base lg:text-lg"
+                      />
+                    </div>
+                    
+                    <div className="text-left">
+                      <label className="block text-white font-medium mb-2 text-base lg:text-lg">Phone Number *</label>
+                      <Input
+                        type="tel"
+                        placeholder="Enter your phone number"
+                        value={formData.phone}
+                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                        className="bg-white/90 border-white/30 h-12 lg:h-14 text-base lg:text-lg"
+                        required
+                      />
+                    </div>
+                    
+                    <div className="text-left">
+                      <label className="block text-white font-medium mb-3 lg:mb-4 text-base lg:text-lg">Preferred Options</label>
+                      <div className="space-y-3">
+                        <label className="flex items-center space-x-3 lg:space-x-4 cursor-pointer bg-white/5 hover:bg-white/10 p-3 lg:p-4 rounded-lg transition-all">
+                          <input
+                            type="checkbox"
+                            checked={formData.bhk3}
+                            onChange={(e) => setFormData({ ...formData, bhk3: e.target.checked })}
+                            className="w-5 h-5 rounded border-white/30 text-gold focus:ring-gold focus:ring-offset-0"
+                          />
+                          <span className="text-white text-base lg:text-lg">3 BHK (2,933 sq.ft)</span>
+                        </label>
+                        
+                        <label className="flex items-center space-x-3 lg:space-x-4 cursor-pointer bg-white/5 hover:bg-white/10 p-3 lg:p-4 rounded-lg transition-all">
+                          <input
+                            type="checkbox"
+                            checked={formData.bhk4}
+                            onChange={(e) => setFormData({ ...formData, bhk4: e.target.checked })}
+                            className="w-5 h-5 rounded border-white/30 text-gold focus:ring-gold focus:ring-offset-0"
+                          />
+                          <span className="text-white text-base lg:text-lg">4.5 BHK (3,862 sq.ft)</span>
+                        </label>
+                        
+                        <label className="flex items-center space-x-3 lg:space-x-4 cursor-pointer bg-white/5 hover:bg-white/10 p-3 lg:p-4 rounded-lg transition-all">
+                          <input
+                            type="checkbox"
+                            checked={formData.brochure}
+                            onChange={(e) => setFormData({ ...formData, brochure: e.target.checked })}
+                            className="w-5 h-5 rounded border-white/30 text-gold focus:ring-gold focus:ring-offset-0"
+                          />
+                          <span className="text-white text-base lg:text-lg">Send me brochure and project plan</span>
+                        </label>
+                      </div>
+                    </div>
+                    
+                    <Button type="submit" size="lg" className="w-full bg-gold hover:bg-gold-dark text-white rounded-full h-12 lg:h-14 text-base lg:text-lg font-semibold mt-6 lg:mt-8" disabled={loading}>
+                      {loading ? 'Submitting...' : 'Submit'}
+                    </Button>
+                    <p className="text-xs lg:text-sm text-white/70 text-center mt-3 lg:mt-4">Your information is secure and will only be used to contact you about Brigade Avalon.</p>
+                  </form>
+                </CardContent>
+              </Card>
+            )}
           </div>
         </div>
       </section>
@@ -563,7 +615,7 @@ const Home = () => {
           <div className="grid md:grid-cols-3 gap-6 lg:gap-8 mb-6 lg:mb-8">
             <div>
               <div className="text-xl lg:text-2xl font-display font-bold mb-2 text-gold">Brigade Avalon</div>
-              <p className="text-white/70 text-sm">Luxury residences crafted for discerning homeowners</p>
+              <p className="text-white/70 text-sm">For those who thought they had everything</p>
             </div>
             <div>
               <h3 className="font-semibold mb-3 lg:mb-4">Quick Links</h3>
