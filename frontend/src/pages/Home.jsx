@@ -276,48 +276,24 @@ const Home = () => {
             </div>
           </div>
 
-          {/* At a Glance with Larger Expandable Images */}
+          {/* At a Glance with Clickable Navigation Cards */}
           <div className="bg-charcoal text-white p-6 lg:p-12 flex items-center">
             <div className="w-full">
               <h2 className="text-3xl lg:text-4xl font-display mb-8 text-gold">At a Glance</h2>
               <div className="grid grid-cols-2 gap-4">
                 {stats.map((stat, idx) => {
                   const Icon = stat.icon;
-                  const isExpanded = expandedStat === idx;
                   return (
-                    <Card 
+                    <a 
                       key={idx} 
-                      className={`bg-white/5 border-white/10 hover:bg-white/10 transition-all cursor-pointer ${isExpanded ? 'col-span-2 row-span-2' : ''}`}
-                      onClick={() => stat.expandable && setExpandedStat(isExpanded ? null : idx)}
+                      href={stat.link}
+                      className="bg-white/5 border border-white/10 hover:bg-white/10 hover:border-gold/50 transition-all cursor-pointer rounded-lg p-4 lg:p-6 block group"
                     >
-                      <CardContent className={`p-4 lg:p-6 ${isExpanded ? 'h-full' : ''}`}>
-                        {!isExpanded ? (
-                          <>
-                            <Icon className="w-8 h-8 lg:w-10 lg:h-10 text-gold mb-2" />
-                            <div className="text-xl lg:text-2xl font-bold mb-1">{stat.value}</div>
-                            <div className="text-xs lg:text-sm text-white/70">{stat.label}</div>
-                          </>
-                        ) : (
-                          <div className="flex flex-col h-full">
-                            <div className="flex items-center justify-between mb-4">
-                              <div className="flex items-center gap-3">
-                                <Icon className="w-8 h-8 text-gold" />
-                                <div>
-                                  <div className="text-2xl font-bold">{stat.value}</div>
-                                  <div className="text-sm text-white/70">{stat.label}</div>
-                                </div>
-                              </div>
-                              <X className="w-5 h-5 text-white/50 hover:text-white" />
-                            </div>
-                            {stat.image && (
-                              <div className="flex-1 rounded-lg overflow-hidden">
-                                <img src={stat.image} alt={stat.label} className="w-full h-full object-cover min-h-[200px]" loading="lazy" />
-                              </div>
-                            )}
-                          </div>
-                        )}
-                      </CardContent>
-                    </Card>
+                      <Icon className="w-8 h-8 lg:w-10 lg:h-10 text-gold mb-2 group-hover:scale-110 transition-transform" />
+                      <div className="text-xl lg:text-2xl font-bold mb-1">{stat.value}</div>
+                      <div className="text-xs lg:text-sm text-white/70">{stat.label}</div>
+                      <div className="text-xs text-gold/0 group-hover:text-gold/100 mt-2 transition-colors">View Details →</div>
+                    </a>
                   );
                 })}
               </div>
