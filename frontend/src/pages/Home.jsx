@@ -448,11 +448,11 @@ const Home = () => {
             <Card className="border-gold/20 overflow-hidden">
               <div className="relative bg-gray-100 aspect-[16/10] lg:aspect-[16/9]">
                 <img 
-                  src="https://images.unsplash.com/photo-1503174971373-b1f69850bded?w=1200&q=80" 
+                  src="https://customer-assets.emergentagent.com/job_brigade-avalon/artifacts/7ijl59i4_image.png" 
                   alt="Brigade Avalon Master Plan" 
                   className="w-full h-full object-contain p-4 lg:p-8 cursor-pointer hover:scale-105 transition-transform duration-300" 
                   loading="lazy"
-                  onClick={() => openLightbox('https://images.unsplash.com/photo-1503174971373-b1f69850bded?w=1200&q=80')}
+                  onClick={() => openLightbox('https://customer-assets.emergentagent.com/job_brigade-avalon/artifacts/7ijl59i4_image.png')}
                 />
                 <div className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium text-charcoal">
                   Click to enlarge
@@ -482,11 +482,11 @@ const Home = () => {
             <Card className="border-gold/20 overflow-hidden">
               <div className="relative bg-gray-100 aspect-[16/10] lg:aspect-[16/9]">
                 <img 
-                  src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=1200&q=80" 
+                  src="https://customer-assets.emergentagent.com/job_brigade-avalon/artifacts/r94nvscn_image.png" 
                   alt="Brigade Avalon Terrace Plan" 
                   className="w-full h-full object-contain p-4 lg:p-8 cursor-pointer hover:scale-105 transition-transform duration-300" 
                   loading="lazy"
-                  onClick={() => openLightbox('https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=1200&q=80')}
+                  onClick={() => openLightbox('https://customer-assets.emergentagent.com/job_brigade-avalon/artifacts/r94nvscn_image.png')}
                 />
                 <div className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium text-charcoal">
                   Click to enlarge
