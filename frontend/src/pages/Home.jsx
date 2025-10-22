@@ -302,41 +302,44 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Gallery Section - Simplified */}
+      {/* Gallery Section - Simple Slider */}
       <section id="gallery" className="py-16 lg:py-24 bg-white overflow-hidden">
         <div className="container mx-auto px-4 lg:px-8">
           <h2 className="text-3xl lg:text-5xl font-display text-center mb-6 lg:mb-12 text-charcoal">Gallery</h2>
           
-          {/* Mobile Carousel - Infinite Loop */}
+          {/* Mobile Simple Slider */}
           <div className="lg:hidden relative">
             <div 
               ref={carouselRef}
-              className="flex gap-3 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-4 px-4 -mx-4" 
+              className="flex gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-6 px-4 -mx-4" 
               style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
             >
-              {[...galleryImages, ...galleryImages, ...galleryImages].map((img, idx) => (
+              {galleryImages.map((img, idx) => (
                 <div 
                   key={idx} 
-                  className="flex-shrink-0 w-[280px] h-[280px] snap-center"
+                  className="flex-shrink-0 w-[85vw] h-[85vw] max-w-[340px] max-h-[340px] snap-center"
                   onClick={() => openLightbox(img)}
                 >
-                  <div className="relative overflow-hidden rounded-xl h-full shadow-lg">
-                    <img src={img} alt={`Gallery ${(idx % galleryImages.length) + 1}`} className="w-full h-full object-cover" loading="lazy" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent flex items-end p-3">
-                      <span className="text-white text-sm font-medium">Tap to view</span>
+                  <div className="relative overflow-hidden rounded-2xl h-full shadow-xl">
+                    <img src={img} alt={`Gallery ${idx + 1}`} className="w-full h-full object-cover" loading="lazy" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-5">
+                      <div className="flex items-center justify-between w-full">
+                        <span className="text-white text-sm font-semibold">Tap to view full size</span>
+                        <span className="text-white/70 text-xs">{idx + 1}/{galleryImages.length}</span>
+                      </div>
                     </div>
                   </div>
                 </div>
               ))}
             </div>
-            <div className="flex justify-center mt-3">
-              <div className="px-3 py-1 bg-gold/20 rounded-full">
-                <span className="text-xs text-gold font-medium">Swipe to explore →</span>
-              </div>
+            <div className="flex justify-center mt-4 gap-2">
+              {galleryImages.map((_, idx) => (
+                <div key={idx} className="w-2 h-2 rounded-full bg-gold/30"></div>
+              ))}
             </div>
           </div>
 
-          {/* Desktop Grid - Simplified */}
+          {/* Desktop Grid */}
           <div className="hidden lg:grid grid-cols-3 xl:grid-cols-4 gap-4 max-w-6xl mx-auto">
             {galleryImages.map((img, idx) => (
               <div key={idx} className="group relative overflow-hidden rounded-lg aspect-square cursor-pointer" onClick={() => openLightbox(img)}>
