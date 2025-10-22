@@ -254,7 +254,11 @@ const Home = () => {
       <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="flex items-center justify-between h-20">
-            <div className="text-2xl font-display font-bold text-charcoal">Brigade Avalon</div>
+            <img 
+              src="https://customer-assets.emergentagent.com/job_brigade-avalon/artifacts/v933x2ub_image.png" 
+              alt="BuildNest Realty" 
+              className="h-12 lg:h-14"
+            />
             <nav className="hidden md:flex items-center gap-8">
               <a href="#gallery" className="text-sm font-medium hover:text-gold transition-colors">Gallery</a>
               <a href="#amenities" className="text-sm font-medium hover:text-gold transition-colors">Amenities</a>
