@@ -254,11 +254,19 @@ const Home = () => {
       <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="flex items-center justify-between h-20">
-            <img 
-              src="https://customer-assets.emergentagent.com/job_brigade-avalon/artifacts/v933x2ub_image.png" 
-              alt="BuildNest Realty" 
-              className="h-12 lg:h-14"
-            />
+            <div className="flex items-center gap-3">
+              <img 
+                src="https://customer-assets.emergentagent.com/job_brigade-avalon/artifacts/p39hlvl5_image.png" 
+                alt="BuildNest Realty Logo" 
+                className="h-10 lg:h-12"
+              />
+              <div className="text-xl lg:text-2xl leading-tight">
+                <span className="font-bold" style={{ color: '#1e3a8a' }}>Build</span>
+                <span className="font-bold" style={{ color: '#fbbf24' }}>N</span>
+                <span className="font-bold" style={{ color: '#1e3a8a' }}>est</span>
+                <span className="font-normal ml-1" style={{ color: '#1e3a8a' }}>Realty</span>
+              </div>
+            </div>
             <nav className="hidden md:flex items-center gap-8">
               <a href="#gallery" className="text-sm font-medium hover:text-gold transition-colors">Gallery</a>
               <a href="#amenities" className="text-sm font-medium hover:text-gold transition-colors">Amenities</a>
