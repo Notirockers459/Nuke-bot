@@ -542,7 +542,7 @@ const Home = () => {
       {/* Final CTA + Form Section */}
       <section id="book-visit" className="relative py-20 lg:py-32">
         <div className="absolute inset-0">
-          <img src={galleryImages[0]} alt="Book Visit" className="w-full h-full object-cover" loading="lazy" />
+          <img src="https://customer-assets.emergentagent.com/job_brigade-avalon/artifacts/kou7ynve_image.png" alt="Book Visit" className="w-full h-full object-cover" loading="lazy" />
           <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/60" />
         </div>
         <div className="container mx-auto px-4 lg:px-8 relative z-10">
