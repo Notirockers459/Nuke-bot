@@ -124,12 +124,12 @@ const Home = () => {
     { 
       icon: HomeIcon, 
       title: 'Premium Clubhouse',
-      image: 'https://images.unsplash.com/photo-1574643156929-51fa098b0394?w=600&q=75'
+      image: 'https://customer-assets.emergentagent.com/job_brigade-avalon/artifacts/1uz2n0yh_image.png'
     },
     { 
       icon: Users, 
       title: 'Banquet Hall',
-      image: 'https://images.unsplash.com/photo-1519167758481-83f29da8c9eb?w=600&q=75'
+      image: 'https://customer-assets.emergentagent.com/job_brigade-avalon/artifacts/rapgtwgm_image.png'
     },
     { 
       icon: Dumbbell, 
