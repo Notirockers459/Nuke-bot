@@ -598,7 +598,7 @@ const Home = () => {
         <div className="container mx-auto px-4 lg:px-8 relative z-10">
           <div className="max-w-3xl mx-auto text-center text-white">
             <h2 className="text-3xl lg:text-6xl font-display mb-4 lg:mb-6">Ready to Experience Brigade Avalon?</h2>
-            <p className="text-lg lg:text-2xl mb-8 lg:mb-12">Book a private tour and our team will get in touch</p>
+            <p className="text-lg lg:text-2xl mb-8 lg:mb-12">There are over 13,000 millionaires in Bangalore, but only 206 will ever call Avalon home. Are you one of the 206?</p>
             
             {showSuccess ? (
               <Card className="bg-white/95 backdrop-blur-md border-white/20">
