@@ -9,7 +9,7 @@ module.exports = {
   	extend: {
   		fontFamily: {
   			display: ['Cormorant Garamond', 'serif'],
-  			body: ['Poppins', 'sans-serif']
+  			body: ['Inter', 'sans-serif']
   		},
   		colors: {
   			gold: '#C5A15A',
